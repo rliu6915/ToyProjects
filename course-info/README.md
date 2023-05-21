@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Course Information
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has frontend. You can run it locally by using npm install and npm start.
 
 ## Available Scripts
 
