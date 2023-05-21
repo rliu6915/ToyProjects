@@ -1,6 +1,6 @@
 # Course Information
 
-This project has frontend. You can run it locally by using npm install and npm start.
+This project has frontend and provides course information. You can run it locally by using npm install and npm start.
 
 ## Available Scripts
 
