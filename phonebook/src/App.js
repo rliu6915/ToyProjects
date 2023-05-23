@@ -13,7 +13,12 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-    console.log("button clicked", event.target);
+    // console.log("button clicked", event.target);
+    if (persons.find((person) => person.name === newPerson)) {
+      const msg = `${newPerson} is already added to phonebook`
+      alert(msg);
+      return;
+    }
     const newPersonObject = {
       name: newPerson,
     };
