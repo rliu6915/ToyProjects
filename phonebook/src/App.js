@@ -55,15 +55,20 @@ const App = () => {
       setNewPerson("");
       setNewNumber("");
     });
-    // axios.post("http://localhost:3001/persons", newPersonObject).then(response => {
-    //   console.log("promise fulfilled POST");
-    //   setPersons(persons.concat(response.data));
-    //   setNewPerson("");
-    //   setNewNumber("");
-    // });   
-    // setPersons(persons.concat(newPersonObject));
-    // setNewPerson("");
-    // setNewNumber("");
+  };
+
+  const handleDeletePerson = (e) => {
+    console.log("handleDeletePerson", e.target.id);
+    const id = parseInt(e.target.id);
+    const person = persons.find(person => person.id === id);
+
+    const msg = `Delete ${person.name}?`;
+    if (window.confirm(msg)) {
+      personsServices.deletePerson(id).then(returnedPerson => {
+        console.log("promise fulfilled DELETE");
+        setPersons(persons.filter(person => person.id !== returnedPerson.id));
+      });
+    }
   };
 
   return (
@@ -75,7 +80,10 @@ const App = () => {
       <Form addPerson={addPerson} newPerson={newPerson} handlePersonChange={handlePersonChange}
         newNumber={newNumber} handleNumberChange={handleNumberChange}/>
       <h2>People's names & numbers</h2>
-      <Persons personsToShow={personsToShow}/>
+      <Persons 
+        personsToShow={personsToShow}
+        handleDeletePerson={(e) => handleDeletePerson(e)}
+      />
     </div>
   );
 }
