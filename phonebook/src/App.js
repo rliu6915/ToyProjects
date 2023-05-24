@@ -39,22 +39,31 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault();
     // console.log("button clicked", event.target);
-    if (persons.find(person => person.name === newPerson)) {
-      const msg = `${newPerson} is already added to phonebook`
-      alert(msg);
-      return;
+    console.log("newPerson", newPerson);
+    const person = persons.find(person => person.name.toLowerCase() === newPerson.toLowerCase());
+    console.log("person", person);
+    if (person) {
+      const msg = `${newPerson} is already added to phonebook, repalce the old number with a new one?`;
+      if (window.confirm(msg)) {
+        const newPersonObject = {...person, number: newNumber};
+        personsServices.update(person.id, newPersonObject).then(returnedPerson => {
+          console.log("promise fulfilled PUT");
+          setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson));
+        })
+      }
+    } else {
+      const newPersonObject = {
+        name: newPerson,
+        number: newNumber,
+        id: persons.length + 1,
+      };
+      personsServices.create(newPersonObject).then(returnedPerson => {
+        console.log("promise fulfilled POST");
+        setPersons(persons.concat(returnedPerson));
+      });
     }
-    const newPersonObject = {
-      name: newPerson,
-      number: newNumber,
-      id: persons.length + 1,
-    };
-    personsServices.create(newPersonObject).then(returnedPerson => {
-      console.log("promise fulfilled POST");
-      setPersons(persons.concat(returnedPerson));
-      setNewPerson("");
-      setNewNumber("");
-    });
+    setNewPerson("");
+    setNewNumber("");
   };
 
   const handleDeletePerson = (e) => {
@@ -64,9 +73,9 @@ const App = () => {
 
     const msg = `Delete ${person.name}?`;
     if (window.confirm(msg)) {
-      personsServices.deletePerson(id).then(returnedPerson => {
+      personsServices.deletePerson(id).then(() => {
         console.log("promise fulfilled DELETE");
-        setPersons(persons.filter(person => person.id !== returnedPerson.id));
+        setPersons(persons.filter(person => person.id !== id));
       });
     }
   };
