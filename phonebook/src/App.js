@@ -57,6 +57,13 @@ const App = () => {
           }, 5000);
           setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson));
         })
+        .catch(error => {
+          setNotification(`Information of ${newPerson} has already been removed from server`);
+          setTimeout(() => {
+            setNotification(null);
+          }, 5000);
+          setPersons(persons.filter(person => person.id !== newPersonObject.id));
+        });
       }
     } else {
       const newPersonObject = {
