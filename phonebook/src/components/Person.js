@@ -1,6 +1,6 @@
 const Person = ({id, name, number, handleDeletePerson}) => {
     return (
-        <li>
+        <li className="person">
             {name}: {number}{'  '}
             <button id={id} onClick={handleDeletePerson}>
                 delete

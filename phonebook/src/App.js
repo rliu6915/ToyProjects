@@ -3,6 +3,7 @@ import Filter from "./components/Filter";
 import Form from "./components/Form";
 import Persons from "./components/Persons";
 import personsServices from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -35,6 +36,8 @@ const App = () => {
     setNewFilter(event.target.value);
   };
   const personsToShow = persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase()));
+  
+  const [notification, setNotification] = useState(null);
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -48,6 +51,10 @@ const App = () => {
         const newPersonObject = {...person, number: newNumber};
         personsServices.update(person.id, newPersonObject).then(returnedPerson => {
           console.log("promise fulfilled PUT");
+          setNotification(`Updated ${returnedPerson.name}`);
+          setTimeout(() => {
+            setNotification(null);
+          }, 5000);
           setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson));
         })
       }
@@ -59,6 +66,10 @@ const App = () => {
       };
       personsServices.create(newPersonObject).then(returnedPerson => {
         console.log("promise fulfilled POST");
+        setNotification(`Added ${returnedPerson.name}`);
+        setTimeout(() => {
+          setNotification(null);
+        }, 5000);
         setPersons(persons.concat(returnedPerson));
       });
     }
@@ -75,6 +86,10 @@ const App = () => {
     if (window.confirm(msg)) {
       personsServices.deletePerson(id).then(() => {
         console.log("promise fulfilled DELETE");
+        setNotification(`Deleted ${person.name}`);
+        setTimeout(() => {
+          setNotification(null);
+        }, 5000);
         setPersons(persons.filter(person => person.id !== id));
       });
     }
@@ -83,6 +98,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={notification} />
       <h2>Search</h2>
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
       <h2>Add a new person</h2>
