@@ -3,13 +3,17 @@ import CountryDetail from './CountryDetail'
 
 const Countries = ({filter, countries}) => {
 
+    const filteredCountries = countries.filter(country =>
+        country.name.common.toLowerCase().includes(filter.toLowerCase())
+    )
+
     if (filter.length === 0) {
         return <div>
             no filter
         </div>
     }
 
-    if (countries.length > 10) {
+    if (filteredCountries.length > 10) {
         return (
             <p>
                 too many matches, specify another filter
@@ -17,20 +21,17 @@ const Countries = ({filter, countries}) => {
         )
     }
 
-    if (countries.length === 1) {
+    if (filteredCountries.length === 1) {
         return (
-            // <Country country={countries[0]} />
-            <CountryDetail countries={countries} />
+            <CountryDetail country={filteredCountries[0]} />
         )
     }
-
-    console.log(countries)
     
     return (
         <ul>
-            {countries.map(country =>
+            {filteredCountries.map(country =>
                 <Country 
-                    key={country.name.common} 
+                    key={country.name.common}
                     country={country} 
                 />
             )}
