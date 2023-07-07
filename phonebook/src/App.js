@@ -49,21 +49,24 @@ const App = () => {
       const msg = `${newPerson} is already added to phonebook, repalce the old number with a new one?`;
       if (window.confirm(msg)) {
         const newPersonObject = {...person, number: newNumber};
-        personsServices.update(person.id, newPersonObject).then(returnedPerson => {
-          console.log("promise fulfilled PUT");
-          setNotification(`Updated ${returnedPerson.name}`);
-          setTimeout(() => {
-            setNotification(null);
-          }, 5000);
-          setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson));
-        })
-        .catch(error => {
-          setNotification(`Information of ${newPerson} has already been removed from server`);
-          setTimeout(() => {
-            setNotification(null);
-          }, 5000);
-          setPersons(persons.filter(person => person.id !== newPersonObject.id));
-        });
+        personsServices.update(person.id, newPersonObject)
+          .then(returnedPerson => {
+            console.log("promise fulfilled PUT");
+            setNotification(`Updated ${returnedPerson.name}`);
+            setTimeout(() => {
+              setNotification(null);
+            }, 5000);
+            setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson));
+          })
+          .catch(error => {
+            // console.log(error);
+            // setNotification(`Information of ${newPerson} has already been removed from server`);
+            setNotification(error.response.data.error);
+            setTimeout(() => {
+              setNotification(null);
+            }, 5000);
+            // setPersons(persons.filter(person => person.id !== newPersonObject.id));
+          });
       }
     } else {
       const newPersonObject = {
@@ -71,14 +74,22 @@ const App = () => {
         number: newNumber,
         id: persons.length + 1,
       };
-      personsServices.create(newPersonObject).then(returnedPerson => {
-        console.log("promise fulfilled POST");
-        setNotification(`Added ${returnedPerson.name}`);
-        setTimeout(() => {
-          setNotification(null);
-        }, 5000);
-        setPersons(persons.concat(returnedPerson));
-      });
+      personsServices.create(newPersonObject)
+        .then(returnedPerson => {
+          console.log("promise fulfilled POST");
+          setNotification(`Added ${returnedPerson.name}`);
+          setTimeout(() => {
+            setNotification(null);
+          }, 5000);
+          setPersons(persons.concat(returnedPerson));
+        })
+        .catch(error => {
+          console.log(error.response.data.error);
+          setNotification(error.response.data.error);
+          setTimeout(() => {
+            setNotification(null);
+          }, 5000);
+        })
     }
     setNewPerson("");
     setNewNumber("");
@@ -86,8 +97,11 @@ const App = () => {
 
   const handleDeletePerson = (e) => {
     console.log("handleDeletePerson", e.target.id);
-    const id = parseInt(e.target.id);
+    const id = e.target.id;
+    // console.log("id", id);
+    // console.log("persons", persons);
     const person = persons.find(person => person.id === id);
+    // console.log("person", person);
 
     const msg = `Delete ${person.name}?`;
     if (window.confirm(msg)) {
