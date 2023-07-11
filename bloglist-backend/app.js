@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 
 const mongoose = require('mongoose')
+require('express-async-errors')
 const blogsRouter = require('./controllers/blogs')
 const logger = require('./utils/logger')
 const config = require('./utils/config')
