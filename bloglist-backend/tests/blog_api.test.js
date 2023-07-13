@@ -29,7 +29,7 @@ beforeEach(async () => {
 
 describe('when there is initially some blogs saved', () => {
   test('blogs are returned as json', async () => {
-    console.log('enter test')
+    // console.log('enter test')
     await api
       .get('/api/blogs')
       .expect(200)
