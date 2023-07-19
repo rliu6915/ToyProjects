@@ -10,8 +10,6 @@ import ToggLable from './components/ToggLable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState(null)
@@ -49,15 +47,9 @@ const App = () => {
 
   // login form
 
-  const handelLogin = async (event) => {
-    event.preventDefault()
-    console.log('logging in with', username, password)
-
+  const handelLogin = async (loginObject) => {
     try {
-      const user = await loginService.login({
-        username, password,
-      })
-      // console.log('user', user)
+      const user = await loginService.login(loginObject)
 
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
@@ -65,8 +57,6 @@ const App = () => {
 
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
     } catch (exception) {
       setErrorMessage({
         text: 'Wrong username or password',
@@ -76,16 +66,6 @@ const App = () => {
         setErrorMessage(null)
       }, 5000)
     }
-  }
-
-  const handleUsernameChange = (event) => {
-    // console.log(event.target.value)
-    setUsername(event.target.value)
-  }
-
-  const handlePasswordChange = (event) => {
-    // console.log(event.target.value)
-    setPassword(event.target.value)
   }
 
   // logout
@@ -99,11 +79,7 @@ const App = () => {
     return (
       <div>
         <LoginForm
-          handelLogin={handelLogin}
-          handleUsernameChange={handleUsernameChange}
-          handlePasswordChange={handlePasswordChange}
-          username={username}
-          password={password}
+          createLogin={handelLogin}
           errorMessage={errorMessage}
         />
       </div>

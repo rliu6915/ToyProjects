@@ -1,13 +1,22 @@
 import Notification from "./Notification"
+import React, { useState } from 'react'
 
-const LoginForm = ({
-  handelLogin,
-  handleUsernameChange,
-  handlePasswordChange,
-  username,
-  password,
-  errorMessage,
-}) => {
+const LoginForm = ({ createLogin, errorMessage }) => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handelLogin = async (event) => {
+    event.preventDefault()
+    console.log('logging in with', username, password)
+
+    createLogin({
+      username, password
+    })
+
+    setUsername('')
+    setPassword('')
+  }
+
   return (
     <div>
       <h2>Log in to application</h2>
@@ -19,7 +28,7 @@ const LoginForm = ({
           username
           <input
             value={username}
-            onChange={handleUsernameChange}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
@@ -27,7 +36,7 @@ const LoginForm = ({
           <input
             type="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
       </div>
         <button type="submit">login</button>
