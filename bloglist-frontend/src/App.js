@@ -16,11 +16,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [notification, setNotification] = useState(null)
 
-  // blog form
-  const [title, setTtitle] = useState('')
-  const [author, setAutor] = useState('')
-  const [url, setUrl] = useState('')
-
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
@@ -38,19 +33,10 @@ const App = () => {
     }
   }, [])
 
-  // blog form
+  // create blog
 
-  const addBlog = async (e) => {
-    e.preventDefault()
-    // console.log('addBlog', e.target.title.value)
-    const blogObject = {
-      title: e.target.title.value,
-      author: e.target.author.value,
-      url: e.target.url.value,
-    }
-
+  const addBlog = async ({blogObject}) => {
     const returnedBlog = await blogService.create(blogObject)
-    // console.log('returnedBlog', returnedBlog)
     setNotification({
       text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
       type: 'notification'
@@ -59,25 +45,6 @@ const App = () => {
       setNotification(null)
     }, 5000)
     setBlogs(blogs.concat(returnedBlog))
-
-    setTtitle('')
-    setAutor('')
-    setUrl('')
-  }
-
-  const handleTitleChange = (event) => {
-    // console.log(event.target.value)
-    setTtitle(event.target.value)
-  }
-
-  const handleAuthorChange = (event) => {
-    // console.log(event.target.value)
-    setAutor(event.target.value)
-  }
-
-  const hanndleUrlChange = (event) => {
-    // console.log(event.target.value)
-    setUrl(event.target.value)
   }
 
   // login form
@@ -150,13 +117,7 @@ const App = () => {
       <Logout user={user} handleLogout={handleLogout} />
       <ToggLable buttonLabel='create blog'>
         <BlogCreate 
-          addBlog={addBlog}
-          title={title}
-          handleTitleChange={handleTitleChange}
-          author={author}
-          handleAuthorChange={handleAuthorChange}
-          url={url}
-          hanndleUrlChange={hanndleUrlChange}
+          createBlog={addBlog}
         />
       </ToggLable>
       <BlogList user={user} blogs={blogs} />

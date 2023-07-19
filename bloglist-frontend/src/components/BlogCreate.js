@@ -1,12 +1,24 @@
-const BlogCreate = ({
-  addBlog,
-  title,
-  handleTitleChange,
-  author,
-  handleAuthorChange,
-  url,
-  hanndleUrlChange
-}) => {
+import React, { useState } from 'react'
+
+const BlogCreate = ({createBlog}) => {
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
+
+  const addBlog = async (e) => {
+    e.preventDefault()
+    const blogObject = {
+      title: e.target.title.value,
+      author: e.target.author.value,
+      url: e.target.url.value,
+    }
+    createBlog(blogObject)
+
+    setTitle('')
+    setAuthor('')
+    setUrl('')
+  }
+
   return (
       <div>
         <h2>create new</h2>
@@ -14,28 +26,22 @@ const BlogCreate = ({
           <div>
             title:
             <input
-              type='text'
               value={title}
-              name='title'
-              onChange={handleTitleChange}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div>
             author:
             <input
-              type='text'
               value={author}
-              name='author'
-              onChange={handleAuthorChange}
+              onChange={(e) => setAuthor(e.target.value)}
             />
           </div>   
           <div>
             url:
             <input
-              type='text'
               value={url}
-              name='url'
-              onChange={hanndleUrlChange}
+              onChange={(e) => setUrl(e.target.value)}
             />
           </div>  
           <button type='submit'>
