@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogList from './components/BlogList'
 import Logout from './components/Logout'
-import Notifcation from './components/Notification'
+import LoginForm from './components/LoginForm'
+import Notification from './components/Notification'
+import BlogCreate from './components/BlogCreate'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -63,40 +64,20 @@ const App = () => {
     setUrl('')
   }
 
-  const blogForm = () => (
-    <form onSubmit={addBlog}>
-      <div>
-        title:
-        <input
-          type='text'
-          value={title}
-          name='title'
-          onChange={(e) => setTtitle(e.target.value)}
-        />
-      </div>
-      <div>
-        author:
-        <input
-          type='text'
-          value={author}
-          name='author'
-          onChange={(e) => setAutor(e.target.value)}
-        />
-      </div>   
-      <div>
-        url:
-        <input
-          type='text'
-          value={url}
-          name='url'
-          onChange={(e) => setUrl(e.target.value)}
-        />
-      </div>  
-      <button type='submit'>
-        create
-      </button>
-    </form>
-  )
+  const handleTitleChange = (event) => {
+    // console.log(event.target.value)
+    setTtitle(event.target.value)
+  }
+
+  const handleAuthorChange = (event) => {
+    // console.log(event.target.value)
+    setAutor(event.target.value)
+  }
+
+  const hanndleUrlChange = (event) => {
+    // console.log(event.target.value)
+    setUrl(event.target.value)
+  }
 
   // login form
 
@@ -129,31 +110,15 @@ const App = () => {
     }
   }
 
-  const loginForm = () => (
-    <form onSubmit={handelLogin}>
-      <div>
-        username:
-        <input
-          type='text'
-          value={username}
-          name='Username'
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        password:
-        <input
-          type='password'
-          value={password}
-          name='Password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type='submit'>
-        login
-      </button>
-    </form>
-  )
+  const handleUsernameChange = (event) => {
+    // console.log(event.target.value)
+    setUsername(event.target.value)
+  }
+
+  const handlePasswordChange = (event) => {
+    // console.log(event.target.value)
+    setPassword(event.target.value)
+  }
 
   // logout
 
@@ -165,9 +130,14 @@ const App = () => {
   if (user === null) {
     return (
       <div>
-        <h2>Log in to application</h2>
-        <Notifcation message={errorMessage} />
-        {loginForm()}
+        <LoginForm
+          handelLogin={handelLogin}
+          handleUsernameChange={handleUsernameChange}
+          handlePasswordChange={handlePasswordChange}
+          username={username}
+          password={password}
+          errorMessage={errorMessage}
+        />
       </div>
     )
   }
@@ -175,10 +145,17 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <Notifcation message={notification} />
+      <Notification message={notification} />
       <Logout user={user} handleLogout={handleLogout} />
-      <h2>create new</h2>
-      {blogForm()}
+      <BlogCreate 
+        addBlog={addBlog}
+        title={title}
+        handleTitleChange={handleTitleChange}
+        author={author}
+        handleAuthorChange={handleAuthorChange}
+        url={url}
+        hanndleUrlChange={hanndleUrlChange}
+      />
       <BlogList user={user} blogs={blogs} />
     </div>
   )
