@@ -78,6 +78,20 @@ const App = () => {
     setUser(null)
   }
 
+  // like 
+  const blogLike = async (blogObject) => {
+    const newBlog = {
+      ...blogObject,
+      likes: blogObject.likes + 1
+    }
+    const returnedBlog = await blogService.like(newBlog.id, newBlog)
+    setBlogs(
+      blogs.map(
+        blog => blog.id !== returnedBlog.id ? blog : returnedBlog
+      )
+    )
+  }
+
   if (user === null) {
     return (
       <div>
@@ -99,7 +113,11 @@ const App = () => {
           createBlog={addBlog}
         />
       </ToggLable>
-      <BlogList user={user} blogs={blogs} />
+      <BlogList 
+        user={user} 
+        blogs={blogs} 
+        blogLike={blogLike}
+      />
     </div>
   )
 }
