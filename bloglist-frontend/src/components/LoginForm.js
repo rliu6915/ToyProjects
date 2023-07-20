@@ -5,7 +5,7 @@ const LoginForm = ({ createLogin, errorMessage }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const handelLogin = async (event) => {
+  const handelLogin = (event) => {
     event.preventDefault()
     console.log('logging in with', username, password)
 

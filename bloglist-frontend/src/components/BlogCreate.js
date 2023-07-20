@@ -5,8 +5,9 @@ const BlogCreate = ({createBlog}) => {
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
-  const addBlog = async (e) => {
+  const addBlog = (e) => {
     e.preventDefault()
+    // console.log('addBlog', e.target)
     const blogObject = {
       title: e.target.title.value,
       author: e.target.author.value,
@@ -27,6 +28,7 @@ const BlogCreate = ({createBlog}) => {
             title:
             <input
               value={title}
+              name='title'
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -34,6 +36,7 @@ const BlogCreate = ({createBlog}) => {
             author:
             <input
               value={author}
+              name='author'
               onChange={(e) => setAuthor(e.target.value)}
             />
           </div>   
@@ -41,6 +44,7 @@ const BlogCreate = ({createBlog}) => {
             url:
             <input
               value={url}
+              name='url'
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>  

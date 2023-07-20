@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import BlogList from './components/BlogList'
@@ -31,9 +31,12 @@ const App = () => {
     }
   }, [])
 
+  const blogCreateRef = useRef()
+
   // create blog
 
-  const addBlog = async ({blogObject}) => {
+  const addBlog = async (blogObject) => {
+    blogCreateRef.current.toggleVisibility()
     const returnedBlog = await blogService.create(blogObject)
     setNotification({
       text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
@@ -91,7 +94,7 @@ const App = () => {
       <h2>blogs</h2>
       <Notification message={notification} />
       <Logout user={user} handleLogout={handleLogout} />
-      <ToggLable buttonLabel='create blog'>
+      <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
         <BlogCreate 
           createBlog={addBlog}
         />
