@@ -115,7 +115,7 @@ const App = () => {
       </ToggLable>
       <BlogList 
         user={user} 
-        blogs={blogs} 
+        blogs={blogs.sort((a, b) => b.likes - a.likes)} 
         blogLike={blogLike}
       />
     </div>
