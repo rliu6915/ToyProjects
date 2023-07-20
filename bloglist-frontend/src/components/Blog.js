@@ -1,3 +1,5 @@
+import React, { useState } from 'react'
+
 const Blog = ({blog}) => {
   const blogStyle = {
     paddingTop: 10,
@@ -6,24 +8,38 @@ const Blog = ({blog}) => {
     borderWidth: 1,
     marginBottom: 5
   }
+  const [visible, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const handleViewChange = () => {
+    setVisible(!visible)
+  }
 
   return (
     <div className="blog" style={blogStyle}>
-    <div>
-      {blog.title}
-      <button>view</button>
-    </div>
-    <div>
-      {blog.author}
-    </div>
-    <div>
-      {blog.url}
-    </div>
-    <div>
-      {blog.likes}
-      <button>like</button>
-    </div>
-  </div>  
+      <div style={hideWhenVisible}>
+        {blog.title}
+        <button onClick={handleViewChange}>view</button>
+      </div>
+      <div style={showWhenVisible}>
+        <div>
+          {blog.title}
+          <button onClick={handleViewChange}>hide</button>
+        </div>
+        <div>
+          {blog.author}
+        </div>
+        <div>
+          {blog.url}
+        </div>
+        <div>
+          {blog.likes}
+          <button>like</button>
+        </div>
+      </div>
+    </div>  
   )
 }
 
