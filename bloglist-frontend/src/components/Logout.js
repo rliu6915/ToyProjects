@@ -2,8 +2,8 @@
 const Logout = ({ user, handleLogout }) => {
   return (
     <div>
-      <p> 
-        {user.name} logged in 
+      <p>
+        {user.name} logged in
         <button onClick={handleLogout}>
           logout
         </button>

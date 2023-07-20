@@ -13,19 +13,18 @@ const getAll = async () => {
 }
 
 const create = async (newBlog) => {
-  const response = await axios.post(baseUrl, newBlog, {headers: {Authorization: token}})
+  const response = await axios.post(baseUrl, newBlog, { headers: { Authorization: token } })
   return response.data
 }
 
 const like = async (id, newBlog) => {
-  const response = await axios.put(`${baseUrl}/${id}`, newBlog, {headers: {Authorization: token}})
+  const response = await axios.put(`${baseUrl}/${id}`, newBlog, { headers: { Authorization: token } })
   return response.data
 }
 
 const remove = async (id) => {
-  const resposne = await axios.delete(`${baseUrl}/${id}`, {headers: {Authorization: token}})
+  const resposne = await axios.delete(`${baseUrl}/${id}`, { headers: { Authorization: token } })
   return resposne.data
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, setToken, create, like, remove}
+export default { getAll, setToken, create, like, remove }
