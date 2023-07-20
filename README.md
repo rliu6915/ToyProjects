@@ -1,5 +1,5 @@
 # ToyProjects - University of Helsinki - Full Stack Open
-Here is my demonstration of toy projects using Javascript
+Here's my demonstration of toy projects from full stack open at University of Helsinki
 
 ### About the course 
 
