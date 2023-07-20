@@ -103,6 +103,15 @@ const App = () => {
     )
   }
 
+  // delete blog
+
+  const blogDelete = async (blogObject) => {
+    if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
+      await blogService.remove(blogObject.id)
+      setBlogs(blogs.filter(blog => blog.id !== blogObject.id))
+    }
+  }
+
   return (
     <div>
       <h2>blogs</h2>
@@ -117,6 +126,7 @@ const App = () => {
         user={user} 
         blogs={blogs.sort((a, b) => b.likes - a.likes)} 
         blogLike={blogLike}
+        blogDelete={blogDelete}
       />
     </div>
   )

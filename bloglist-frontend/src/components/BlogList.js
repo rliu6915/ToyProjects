@@ -1,6 +1,6 @@
 import Blog from "./Blog"
 
-const BlogList = ({user, blogs, blogLike}) => {
+const BlogList = ({user, blogs, blogLike, blogDelete}) => {
   const blogsFiltered = blogs.filter(blog => blog.user.username === user.username)
   // console.log(blogsFiltered)
 
@@ -15,6 +15,7 @@ const BlogList = ({user, blogs, blogLike}) => {
           key={blog.id} 
           blog={blog} 
           hanldeLikeChange={() => hanldeLikeChange(blog)}
+          handelBlogDelete={() => blogDelete(blog)}
         />
       )}
     </div>
