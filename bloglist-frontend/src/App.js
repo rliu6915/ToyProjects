@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [blogs])
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const App = () => {
     setUser(null)
   }
 
-  // like 
+  // like
   const blogLike = async (blogObject) => {
     const newBlog = {
       ...blogObject,
@@ -118,13 +118,13 @@ const App = () => {
       <Notification message={notification} />
       <Logout user={user} handleLogout={handleLogout} />
       <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
-        <BlogCreate 
+        <BlogCreate
           createBlog={addBlog}
         />
       </ToggLable>
-      <BlogList 
-        user={user} 
-        blogs={blogs.sort((a, b) => b.likes - a.likes)} 
+      <BlogList
+        user={user}
+        blogs={blogs.sort((a, b) => b.likes - a.likes)}
         blogLike={blogLike}
         blogDelete={blogDelete}
       />

@@ -1,4 +1,4 @@
-import Notification from "./Notification"
+import Notification from './Notification'
 import React, { useState } from 'react'
 
 const LoginForm = ({ createLogin, errorMessage }) => {
@@ -38,7 +38,7 @@ const LoginForm = ({ createLogin, errorMessage }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-      </div>
+        </div>
         <button type="submit">login</button>
       </form>
     </div>
