@@ -7,11 +7,15 @@ const BlogCreate = ({ createBlog }) => {
 
   const addBlog = (e) => {
     e.preventDefault()
-    // console.log('addBlog', e.target)
+    // console.log('title', title)
+    // console.log('author', author)
     const blogObject = {
-      title: e.target.title.value,
-      author: e.target.author.value,
-      url: e.target.url.value,
+      // title: e.target.title.value,
+      // author: e.target.author.value,
+      // url: e.target.url.value,
+      title: title,
+      author: author,
+      url: url,
     }
     createBlog(blogObject)
 
@@ -30,6 +34,7 @@ const BlogCreate = ({ createBlog }) => {
             value={title}
             name='title'
             onChange={(e) => setTitle(e.target.value)}
+            placeholder='title'
           />
         </div>
         <div>
@@ -38,6 +43,7 @@ const BlogCreate = ({ createBlog }) => {
             value={author}
             name='author'
             onChange={(e) => setAuthor(e.target.value)}
+            placeholder='author'
           />
         </div>
         <div>
@@ -46,6 +52,7 @@ const BlogCreate = ({ createBlog }) => {
             value={url}
             name='url'
             onChange={(e) => setUrl(e.target.value)}
+            placeholder='url'
           />
         </div>
         <button type='submit'>
