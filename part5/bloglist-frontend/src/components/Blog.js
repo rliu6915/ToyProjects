@@ -20,8 +20,7 @@ const Blog = ({ blog, hanldeLikeChange, handelBlogDelete }) => {
   return (
     <div className="blog" style={blogStyle}>
       <div className="shortBlog" style={hideWhenVisible}>
-        {blog.title}
-        {blog.author}
+        {blog.title} {blog.author}
         <button onClick={handleViewChange}>view</button>
       </div>
       <div className="longBlog" style={showWhenVisible}>
