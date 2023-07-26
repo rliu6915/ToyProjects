@@ -10,18 +10,29 @@ describe('Blog app', function() {
     cy.visit('http://localhost:3000')
   })
 
-  it('front page can be opened', function() {
+  it('Login form is shown', function() {
     cy.contains('username')
     cy.contains('Log in to application')
   })
 
-  it ('login form can be opened', function() {
-    cy.contains('login').click()
-    cy.get('#username').type('test username')
-    cy.get('#password').type('test password')
-    cy.get('#login-button').click()
+  describe('Login',function() {
+    it ('succeeds with correct credentials', function() {
+      cy.contains('login').click()
+      cy.get('#username').type('test username')
+      cy.get('#password').type('test password')
+      cy.get('#login-button').click()
 
-    cy.contains('test name logged in')
+      cy.contains('test name logged in')
+    })
+
+    it('fails with wrong credentials', function() {
+      cy.contains('login').click()
+      cy.get('#username').type('test username')
+      cy.get('#password').type('wrong password')
+      cy.get('#login-button').click()
+
+      cy.contains('Wrong username or password')
+    })
   })
 
   describe('when logged in', function() {
