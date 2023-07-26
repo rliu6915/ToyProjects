@@ -45,7 +45,7 @@ describe('Blog app', function() {
       cy.contains('test name logged in')
     })
 
-    it('a new blog can be created', function() {
+    it('a blog can be created', function() {
       cy.contains('create blog').click()
       cy.get('#title').type('test title')
       cy.get('#author').type('test author')
