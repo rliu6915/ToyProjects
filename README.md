@@ -39,9 +39,9 @@ This part introduces to _React_ concepts. It covers the basics: components, prop
 
 This part covers how to display list items in _React_ and how to handle forms. Introduces _JSON server_ and fetching data from it, _axios_ for sending `GET`, `PUT`, `POST` and `DELETE` requests and how to style your _React_ app (CSS).
 
-- [courseinfo](/part2/courseinfo) - Extended Course info app from part 1.
+- [courseinfo](/part2/course-info) - Extended Course info app from part 1.
 - [phonebook](/part2/phonebook) - Phonebook, add/delete contacts with numbers, edit numbers.
-- [dataforcountries](/part2/dataforcountries) - A react app that fetches and displays information form the [REST Countries](https://restcountries.eu) and [Weatcher Stack](https://weatherstack.com/) API's.
+- [countries](/part2/countries) - A react app that fetches and displays information form the [REST Countries](https://restcountries.eu) and [Weatcher Stack](https://weatherstack.com/) API's.
 
 ### Part 3 - [Programming a server with NodeJS and Express](https://fullstackopen.com/en/part3)
 
