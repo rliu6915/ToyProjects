@@ -114,6 +114,23 @@ describe('Blog app', function() {
 
       })
 
+      it('blogs are ordered according to likes with the blog with the most likes being first', function () {
+        cy.createBlog({
+          title: 'test title 3', author: 'test author 3', url: 'test url 3'
+        })
+        cy.createBlog({
+          title: 'test title 4', author: 'test author 4', url: 'test url 4'
+        })
+
+        cy.get('.blog').eq(1).contains('view').click()
+        cy.get('.blog').eq(1).contains('like').click()
+
+        cy.get('.blog').eq(0).contains('test title 3')
+        cy.get('.blog').eq(1).contains('test title 2')
+        cy.get('.blog').eq(2).contains('test title 4')
+
+      })
+
     })
 
   })
