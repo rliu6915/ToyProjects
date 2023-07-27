@@ -27,17 +27,13 @@ An overall introduction to the course. It introduces to some concepts like HTTP 
 - [single page app](/part0) - The diagram shows the communication between the browser and the server when user opened single page app on the browser.
 - [new note (single page app)](/part0) - The diagram shows how communicate the browser and the server when user added a note to a single page app.
 
-[View solutions folder](/part0)
-
 ### Part 1 - [Introduction to React](https://fullstackopen.com/en/part1)
 
 This part introduces to _React_ concepts. It covers the basics: components, props, _JSX_ and more advanced concepts: _Javascript_ functionalities that are used a lot in _React_ (`.map()`, `.filter()`, `.reduce()`), destructuring, event handlers in _React_ and passing state to child components, spread operator, hooks and their rules and conditional rendering.
 
-- [courseinfo](/part1/courseinfo) - Simple course information page which counts total number of exercises of the course.
+- [courseinfo](/part1/course-info) - Simple course information page which counts total number of exercises of the course.
 - [unicafe](/part1/unicafe) - This app gathers feedbacks and makes statistic.
 - [anecdotes](/part1/anecdotes) - This app provides to vote for a random anecdote, also shows the most voted anecdote.
-
-[View solutions folder](/part1)
 
 ### Part 2 - [Communicating with server](https://fullstackopen.com/en/part2)
 
