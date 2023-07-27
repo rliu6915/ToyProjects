@@ -85,7 +85,37 @@ describe('Blog app', function() {
         cy.contains('like').click()
         cy.contains('1')
       })
+
+      it('it can be deleted by the user who created it', function () {
+        cy.contains('view').click()
+        cy.contains('remove').click()
+        cy.get('html').should('not.contain', 'test title 2')
+      })
+
+      it('it cannot be deleted by another user', function () {
+        // cy.createBlog({
+        //   title: 'created by test username', author: 'username', url: 'test url 3'
+        // })
+
+        cy.contains('logout').click()
+        const user = {
+          name: 'test name 1',
+          username: 'test username 1',
+          password: 'test password 1'
+        }
+        cy.request('POST', `${Cypress.env('BACKEND')}/users/`, user)
+        cy.login({ username: 'test username 1', password: 'test password 1' })
+
+        cy.contains('view').click()
+        cy.get('form').should('not.contain', 'remove')
+
+        // cy.contains('view').click()
+        // cy.get('html').should('contain', 'created by test username')
+
+      })
+
     })
+
   })
 
 })
