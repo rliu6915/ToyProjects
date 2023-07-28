@@ -1,6 +1,6 @@
 
 # University of Helsinki - Full Stack Open - ToyProjects
-Here is my demonstration of toy projects from full stack open at University of Helsinki
+Here is my demonstration of toy projects from full stack open at University of Helsinki. 
 
 
 ### About the course 
@@ -27,38 +27,34 @@ An overall introduction to the course. It introduces to some concepts like HTTP 
 - [single page app](/part0) - The diagram shows the communication between the browser and the server when user opened single page app on the browser.
 - [new note (single page app)](/part0) - The diagram shows how communicate the browser and the server when user added a note to a single page app.
 
-[View solutions folder](/part0)
-
 ### Part 1 - [Introduction to React](https://fullstackopen.com/en/part1)
 
 This part introduces to _React_ concepts. It covers the basics: components, props, _JSX_ and more advanced concepts: _Javascript_ functionalities that are used a lot in _React_ (`.map()`, `.filter()`, `.reduce()`), destructuring, event handlers in _React_ and passing state to child components, spread operator, hooks and their rules and conditional rendering.
 
-- [courseinfo](/part1/courseinfo) - Simple course information page which counts total number of exercises of the course.
+- [courseinfo](/part1/course-info) - Simple course information page which counts total number of exercises of the course.
 - [unicafe](/part1/unicafe) - This app gathers feedbacks and makes statistic.
 - [anecdotes](/part1/anecdotes) - This app provides to vote for a random anecdote, also shows the most voted anecdote.
-
-[View solutions folder](/part1)
 
 ### Part 2 - [Communicating with server](https://fullstackopen.com/en/part2)
 
 This part covers how to display list items in _React_ and how to handle forms. Introduces _JSON server_ and fetching data from it, _axios_ for sending `GET`, `PUT`, `POST` and `DELETE` requests and how to style your _React_ app (CSS).
 
-- [courseinfo](/part2/courseinfo) - Extended Course info app from part 1.
-- [phonebook](/part2/phonebook) - Phonebook, add/delete contacts with numbers, edit numbers.
-- [dataforcountries](/part2/dataforcountries) - A react app that fetches and displays information form the [REST Countries](https://restcountries.eu) and [Weatcher Stack](https://weatherstack.com/) API's.
+- [courseinfo](/part2/course-info) - Extended Course info app from part 1.
+- [phonebook-frontend](/part2/phonebook) - Phonebook, add/delete contacts with numbers, edit numbers.
+- [countries](/part2/countries) - A react app that fetches and displays information form the [REST Countries](https://restcountries.eu) and [Weatcher Stack](https://weatherstack.com/) API's.
 
 ### Part 3 - [Programming a server with NodeJS and Express](https://fullstackopen.com/en/part3)
 
 This part is focused on the backend. How to: implement a simple _REST API_ in _Node.js_ using _Express_, connect to a database (_MongoDB_) to store and retrieve data, deploy your app.
 
-- [phonebook](/part3/phonebookbackend) - The app source backend code.
-- [phonebook](https://phonebook6.herokuapp.com/) - The app deployed on Heroku. Frontend from part 2 and Backend from part 3 works together.
+- [phonebook-backend](/part3/phonebook-backend) - The app source backend code.
+- [phonebook-deployed](https://phonebook-backend-1.fly.dev) - The app deployed on fly. Frontend from part 2 and Backend from part 3 works together.
 
 ### Part 4 - [Testing Express servers, user administration](https://fullstackopen.com/en/part4)
 
 This part is focused on testing _Node.js_ applications, async/await, user administration, references across collections, token based authentication.
 
-- [bloglist](/part4/bloglist) - Allows users to save information (blog author, title, url, and amount of upvotes from users) about interesting blogs they have stumbled across on the internet.
+- [bloglist-backend](/part4/bloglist-backend) - Allows users to save information (blog author, title, url, and amount of upvotes from users) about interesting blogs they have stumbled across on the internet.
 
 ### Part 5 - [Testing React apps](https://fullstackopen.com/en/part5)
 
