@@ -6,26 +6,34 @@ const App = () => {
 
   const generateId = () => (100000 * Math.random()).toFixed(0)
 
-  const addAnecdote = (e) => {
-    e.preventDefault()
-    console.log('addAnecdote')
-    const content = e.target.anecdote.value
-    e.target.anecdote.value = ''
-    dispatch({
+  const createAnecdote = (content) => {
+    return {
       type: 'NEW_ANECDOTE',
       data: {
         content: content,
         id: generateId()
       }
-    })
+    }
+  }
+
+  const addAnecdote = (e) => {
+    e.preventDefault()
+    console.log('addAnecdote')
+    const content = e.target.anecdote.value
+    e.target.anecdote.value = ''
+    dispatch(createAnecdote(content))
+  }
+
+  const addVote = (id) => {
+    return {
+      type: 'VOTE',
+      data: { id }
+    }
   }
 
   const vote = (id) => {
     console.log('vote', id)
-    dispatch({
-      type: 'VOTE',
-      data: { id }
-    })
+    dispatch(addVote(id))
   }
 
   return (
