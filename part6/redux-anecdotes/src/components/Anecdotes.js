@@ -14,15 +14,6 @@ const Anecdotes = () => {
           anecdote={anecdote}
           handleOnClick={() => dispatch(addVote(anecdote.id))}
         />
-        // <div key={anecdote.id}>
-        //   <div>
-        //     {anecdote.content}
-        //   </div>
-        //   <div>
-        //     has {anecdote.votes}
-        //     <button onClick={() => dispatch(addVote(anecdote.id))}>vote</button>
-        //   </div>
-        // </div>
       )}
     </div>
   )
