@@ -67,7 +67,9 @@ const anecdotesSlice = createSlice({
     addVote(state, action) {
       // console.log('action', action)
       const id = action.payload
+      // console.log('state', state)
       const anecdoteToChange = state.find(a => a.id === id)
+      // console.log('anecdoteToChange', anecdoteToChange)
       anecdoteToChange.votes += 1
     }
   }
