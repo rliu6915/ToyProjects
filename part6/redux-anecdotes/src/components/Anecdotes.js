@@ -4,11 +4,17 @@ import Anecdote from './Anecdote'
 
 const Anecdotes = () => {
   const dispatch = useDispatch()
-  const anecdotes = useSelector(state => state)
-    .sort((a, b) => b.votes - a.votes)
+  const anecdotes = useSelector(({ filter, anecdotes}) => {
+    if (filter === 'ALL') {
+      return anecdotes
+    }
+    return anecdotes.filter(anecdote => 
+      anecdote.content.toLowerCase().includes(filter.toLowerCase()))
+  })
+  const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
   return (
     <div>
-      {anecdotes.map(anecdote =>
+      {sortedAnecdotes.map(anecdote =>
         <Anecdote
           key={anecdote.id}
           anecdote={anecdote}
