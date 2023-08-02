@@ -1,16 +1,20 @@
 import { useDispatch } from 'react-redux'
 import { createAnecdote } from '../reducers/anecdoteReducer'
 import { showNotification } from '../reducers/notificationReducer'
+import anecdoteServices from '../services/anecdotes'
+
 
 const NewAnecdote = () => {
   const dispatch = useDispatch()
 
-  const addAnecdote = (e) => {
+  const addAnecdote = async (e) => {
     e.preventDefault()
     console.log('addAnecdote')
     const content = e.target.anecdote.value
     e.target.anecdote.value = ''
-    dispatch(createAnecdote(content))
+    // send data to backend
+    const newAnecdote = await anecdoteServices.createNew(content)
+    dispatch(createAnecdote(newAnecdote))
     dispatch(showNotification(`you created '${content}'`))
     setTimeout(() => {
       dispatch(showNotification(''))
