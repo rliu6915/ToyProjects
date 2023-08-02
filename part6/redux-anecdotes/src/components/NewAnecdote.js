@@ -13,8 +13,8 @@ const NewAnecdote = () => {
     const content = e.target.anecdote.value
     e.target.anecdote.value = ''
     // send data to backend
-    const newAnecdote = await anecdoteServices.createNew(content)
-    dispatch(createAnecdote(newAnecdote))
+    await anecdoteServices.createNew(content)
+    dispatch(createAnecdote(content))
     dispatch(showNotification(`you created '${content}'`))
     setTimeout(() => {
       dispatch(showNotification(''))
