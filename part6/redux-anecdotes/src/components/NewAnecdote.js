@@ -14,6 +14,7 @@ const NewAnecdote = () => {
     e.target.anecdote.value = ''
     // send data to backend
     await anecdoteServices.createNew(content)
+    // dispatch action to update state
     dispatch(createAnecdote(content))
     dispatch(showNotification(`you created '${content}'`))
     setTimeout(() => {
