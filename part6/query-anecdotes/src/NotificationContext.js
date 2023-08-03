@@ -1,81 +1,81 @@
-// import { createContext, useReducer, useContext } from 'react'
-
-// const notificationReducer = (state, action) => {
-//   switch (action.type) {
-//     case 'SHOW':
-//       return action.data
-//     case 'HIDE':
-//       return null
-//     default:
-//       return state
-//   }
-// }
-
-// const NotificationContext = createContext()
-
-// export const NotificationContextProvider = ({ children }) => {
-//   const [notification, dispatch] = useReducer(notificationReducer, null)
-
-//   return (
-//     <NotificationContext.Provider value={[notification, dispatch]}>
-//       {children}
-//     </NotificationContext.Provider>
-//   )
-// }
-
-// export const useNotificationValue = () => {
-//   const notificationAndDispatch = useContext(NotificationContext)
-//   console.log('notificationAndDispatch', notificationAndDispatch)
-//   return notificationAndDispatch[0]
-// }
-
-// export const useNotificationDispatch = () => {
-//   const notificationAndDispatch = useContext(NotificationContext)
-//   return notificationAndDispatch[1]
-// }
-
-// export default NotificationContext
-
-import { createContext, useReducer, useContext } from "react"
+import { createContext, useReducer, useContext } from 'react'
 
 const notificationReducer = (state, action) => {
-	switch (action.type) {
-		case "SHOW":
-			return action.data
-		case "HIDE":
-			return ""
-		default:
-			return state
-	}
+  switch (action.type) {
+    case 'SHOW':
+      return action.data
+    case 'HIDE':
+      return null
+    default:
+      return state
+  }
 }
 
 const NotificationContext = createContext()
 
 export const NotificationContextProvider = ({ children }) => {
-	const [notification, notificationDispatch] = useReducer(
-		notificationReducer,
-		""
-	)
+  const [notification, dispatch] = useReducer(notificationReducer, null)
 
-	return (
-		<NotificationContext.Provider
-			value={[notification, notificationDispatch]}
-		>
-			{children}
-		</NotificationContext.Provider>
-	)
+  return (
+    <NotificationContext.Provider value={[notification, dispatch]}>
+      {children}
+    </NotificationContext.Provider>
+  )
 }
 
-// helpers
-
 export const useNotificationValue = () => {
-	const notificationAndDispatch = useContext(NotificationContext)
-	return notificationAndDispatch[0]
+  const notificationAndDispatch = useContext(NotificationContext)
+  console.log('notificationAndDispatch', notificationAndDispatch)
+  return notificationAndDispatch[0]
 }
 
 export const useNotificationDispatch = () => {
-	const notificationAndDispatch = useContext(NotificationContext)
-	return notificationAndDispatch[1]
+  const notificationAndDispatch = useContext(NotificationContext)
+  return notificationAndDispatch[1]
 }
 
 export default NotificationContext
+
+// import { createContext, useReducer, useContext } from "react"
+
+// const notificationReducer = (state, action) => {
+// 	switch (action.type) {
+// 		case "SHOW":
+// 			return action.data
+// 		case "HIDE":
+// 			return ""
+// 		default:
+// 			return state
+// 	}
+// }
+
+// const NotificationContext = createContext()
+
+// export const NotificationContextProvider = ({ children }) => {
+// 	const [notification, notificationDispatch] = useReducer(
+// 		notificationReducer,
+// 		""
+// 	)
+
+// 	return (
+// 		<NotificationContext.Provider
+// 			value={[notification, notificationDispatch]}
+// 		>
+// 			{children}
+// 		</NotificationContext.Provider>
+// 	)
+// }
+
+// // helpers
+
+// export const useNotificationValue = () => {
+// 	const notificationAndDispatch = useContext(NotificationContext)
+// 	return notificationAndDispatch[0]
+// }
+
+// export const useNotificationDispatch = () => {
+// 	const notificationAndDispatch = useContext(NotificationContext)
+// 	return notificationAndDispatch[1]
+// }
+
+// export default NotificationContext
