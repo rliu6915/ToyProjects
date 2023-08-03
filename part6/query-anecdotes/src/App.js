@@ -1,10 +1,12 @@
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import { useQuery, useMutation, useQueryClient} from 'react-query'
+import { useNotificationDispatch } from './NotificationContext'
 import requests from './requests'
 
 const App = () => {
   const queryClient = useQueryClient()
+  const notificationDispatch = useNotificationDispatch()
   const newAnecdoteMutation = useMutation(requests.createNew, {
     onSuccess: (newAnecdotes) => {
       // queryClient.invalidateQueries('anecdotes')
@@ -19,12 +21,27 @@ const App = () => {
   })
 
   const handleVote = (anecdote) => {
-    console.log('vote')
+    // console.log('vote')
     const updatedAnecdote = {
       ...anecdote,
       votes: anecdote.votes + 1
     }
-    updateAnecdoteMutation.mutate(updatedAnecdote)
+    updateAnecdoteMutation.mutate(
+      updatedAnecdote,
+      {
+        onSuccess: () => {
+          notificationDispatch({
+            type: 'SHOW',
+            data: `you voted '${anecdote.content}'`
+          })
+          setTimeout(() => {
+            notificationDispatch({
+              type: 'HIDE'
+            })
+          }, 5000)
+        }
+      }
+    )
   }
 
   // get all anecdotes
@@ -56,7 +73,33 @@ const App = () => {
       content,
       votes: 0
     }
-    newAnecdoteMutation.mutate(newAnecdote)
+    newAnecdoteMutation.mutate(
+      newAnecdote,
+      {
+        onSuccess: () => {
+          notificationDispatch({
+            type: 'SHOW',
+            data: `a new anecdote ${content} created!`
+          })
+          setTimeout(() => {
+            notificationDispatch({
+              type: 'HIDE'
+            })
+          }, 5000)
+        },
+        onError: (error) => {
+          notificationDispatch({
+            type: 'SHOW',
+            data: `error creating anecdote: ${error.message}`
+          })
+          setTimeout(() => {
+            notificationDispatch({
+              type: 'HIDE'
+            })
+          }, 5000)
+        }
+      }
+    )
   }
 
   return (
