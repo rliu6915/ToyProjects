@@ -17,6 +17,22 @@ const Menu = () => {
   )
 }
 
+const Notification = ({ notification }) => {
+  const style = {
+    border: 'solid',
+    padding: 10,
+    borderWidth: 1
+  }
+  if (notification === '') {
+    return null
+  }
+  return (
+    <div style={style}>
+      {`a new anecdote ${notification} created!`}
+    </div>
+  )
+}
+
 const Anecdote = ({ anecdote }) => {
   // const id = useParams().id
   // const anecdote = anecdotes.find(a => a.id === Number(id))
@@ -63,7 +79,7 @@ const Footer = () => (
   </div>
 )
 
-const CreateNew = ({ addNew }) => {
+const CreateNew = ({ addNew, setNotification }) => {
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
@@ -79,6 +95,10 @@ const CreateNew = ({ addNew }) => {
       votes: 0
     })
     navigate('/')
+    setNotification(content)
+    setTimeout(() => {
+      setNotification("")
+    }, 5000)
   }
 
   return (
@@ -152,9 +172,10 @@ const App = () => {
     <div>
       <h1>Software anecdotes</h1>
       <Menu />
+      <Notification notification={notification} />
       <Routes>
         <Route path="/" element={<AnecdoteList anecdotes={anecdotes} />} />
-        <Route path="/create" element={<CreateNew addNew={addNew} />} />
+        <Route path="/create" element={<CreateNew addNew={addNew} setNotification={setNotification}/>} />
         <Route path="/about" element={<About />} />
         <Route path="/anecdotes/:id" element={<Anecdote anecdote={anecdote} />} />
       </Routes>
