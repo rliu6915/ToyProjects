@@ -84,9 +84,9 @@ const CreateNew = ({ addNew, setNotification }) => {
   // const [content, setContent] = useState('')
   // const [author, setAuthor] = useState('')
   // const [info, setInfo] = useState('')
-  const content = useField('content')
-  const author = useField('author')
-  const info = useField('info')
+  const [content, resetContent] = useField('content')
+  const [author, resetAuthor] = useField('author')
+  const [info, resetInfo] = useField('info')
 
   const navigate = useNavigate()
 
@@ -107,9 +107,9 @@ const CreateNew = ({ addNew, setNotification }) => {
 
   const handleReset = (e) => {
     e.preventDefault()
-    content.reset()
-    author.reset()
-    info.reset()
+    resetContent()
+    resetAuthor()
+    resetInfo()
   }
 
   return (
