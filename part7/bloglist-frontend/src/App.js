@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import BlogCreate from './components/BlogCreate'
 import ToggLable from './components/ToggLable'
-import { deleteBlog, initializeBlogs } from './reducers/blogReducer'
+import { deleteBlog, initializeBlogs, likeBlog } from './reducers/blogReducer'
 import { createBlog } from './reducers/blogReducer'
 
 import { useDispatch } from 'react-redux'
@@ -100,19 +100,20 @@ const App = () => {
   }
 
   // like
-  // const blogLike = async (blogObject) => {
-  //   // const newBlog = {
-  //   //   ...blogObject,
-  //   //   likes: blogObject.likes + 1
-  //   // }
+  const blogLike = (blogObject) => {
+    // const newBlog = {
+    //   ...blogObject,
+    //   likes: blogObject.likes + 1
+    // }
 
-  //   // const returnedBlog = await blogService.like(newBlog.id, newBlog)
-  //   // setBlogs(
-  //   //   blogs.map(
-  //   //     blog => blog.id !== returnedBlog.id ? blog : returnedBlog
-  //   //   )
-  //   // )
-  // }
+    // const returnedBlog = await blogService.like(newBlog.id, newBlog)
+    // setBlogs(
+    //   blogs.map(
+    //     blog => blog.id !== returnedBlog.id ? blog : returnedBlog
+    //   )
+    // )
+    dispatch(likeBlog(blogObject.id, blogObject))
+  }
 
   if (user === null) {
     return (
@@ -146,6 +147,7 @@ const App = () => {
       </ToggLable>
       <BlogList
         user={user}
+        blogLike={blogLike}
         blogDelete={blogDelete}
       />
     </div>
