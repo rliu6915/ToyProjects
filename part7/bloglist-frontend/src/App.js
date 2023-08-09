@@ -8,6 +8,7 @@ import Notification from './components/Notification'
 import BlogCreate from './components/BlogCreate'
 import ToggLable from './components/ToggLable'
 import { initializeBlogs } from './reducers/blogReducer'
+import { createBlog } from './reducers/blogReducer'
 
 import { useDispatch } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
@@ -46,7 +47,8 @@ const App = () => {
 
   const addBlog = async (blogObject) => {
     blogCreateRef.current.toggleVisibility()
-    const returnedBlog = await blogService.create(blogObject)
+    // const returnedBlog = await blogService.create(blogObject)
+
     // setNotification({
     //   text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
     //   type: 'notification'
@@ -55,11 +57,12 @@ const App = () => {
     //   setNotification(null)
     // }, 5000)
     dispatch(setNotification({
-      text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
+      text: `a new blog ${blogObject.title} by ${blogObject.author} added`,
       type: 'notification'
     }, 5))
 
     // setBlogs(blogs.concat(returnedBlog))
+    dispatch(createBlog(blogObject))
   }
 
   // login form
@@ -97,18 +100,19 @@ const App = () => {
   }
 
   // like
-  const blogLike = async (blogObject) => {
-    const newBlog = {
-      ...blogObject,
-      likes: blogObject.likes + 1
-    }
-    const returnedBlog = await blogService.like(newBlog.id, newBlog)
-    // setBlogs(
-    //   blogs.map(
-    //     blog => blog.id !== returnedBlog.id ? blog : returnedBlog
-    //   )
-    // )
-  }
+  // const blogLike = async (blogObject) => {
+  //   // const newBlog = {
+  //   //   ...blogObject,
+  //   //   likes: blogObject.likes + 1
+  //   // }
+
+  //   // const returnedBlog = await blogService.like(newBlog.id, newBlog)
+  //   // setBlogs(
+  //   //   blogs.map(
+  //   //     blog => blog.id !== returnedBlog.id ? blog : returnedBlog
+  //   //   )
+  //   // )
+  // }
 
   if (user === null) {
     return (
