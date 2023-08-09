@@ -145,7 +145,6 @@ const App = () => {
       </ToggLable>
       <BlogList
         user={user}
-        blogLike={blogLike}
         blogDelete={blogDelete}
       />
     </div>
