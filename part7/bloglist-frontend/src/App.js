@@ -7,18 +7,28 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import BlogCreate from './components/BlogCreate'
 import ToggLable from './components/ToggLable'
+// import { initializeBlogs } from './reducers/blogReducer'
+
+import { useDispatch } from 'react-redux'
+import { setNotification } from './reducers/notificationReducer'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [notification, setNotification] = useState(null)
+  // const [errorMessage, setErrorMessage] = useState(null)
+  // const [notification, setNotification] = useState(null)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
     )
   }, [blogs])
+
+  // useEffect(() => {
+  //   dispatch(initializeBlogs())
+  // }, [dispatch])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
@@ -38,13 +48,18 @@ const App = () => {
   const addBlog = async (blogObject) => {
     blogCreateRef.current.toggleVisibility()
     const returnedBlog = await blogService.create(blogObject)
-    setNotification({
+    // setNotification({
+    //   text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
+    //   type: 'notification'
+    // })
+    // setTimeout(() => {
+    //   setNotification(null)
+    // }, 5000)
+    dispatch(setNotification({
       text: `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`,
       type: 'notification'
-    })
-    setTimeout(() => {
-      setNotification(null)
-    }, 5000)
+    }, 5))
+
     setBlogs(blogs.concat(returnedBlog))
   }
 
@@ -61,13 +76,17 @@ const App = () => {
       blogService.setToken(user.token)
       setUser(user)
     } catch (exception) {
-      setErrorMessage({
+      dispatch(setNotification({
         text: 'Wrong username or password',
         type: 'error'
-      })
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      }, 5))
+      // setErrorMessage({
+      //   text: 'Wrong username or password',
+      //   type: 'error'
+      // })
+      // setTimeout(() => {
+      //   setErrorMessage(null)
+      // }, 5000)
     }
   }
 
@@ -97,7 +116,6 @@ const App = () => {
       <div>
         <LoginForm
           createLogin={handelLogin}
-          errorMessage={errorMessage}
         />
       </div>
     )
@@ -115,7 +133,7 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <Notification message={notification} />
+      <Notification />
       <Logout user={user} handleLogout={handleLogout} />
       <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
         <BlogCreate
