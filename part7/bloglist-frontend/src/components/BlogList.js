@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux'
 import Blog from './Blog'
 
-const BlogList = ({ user, blogs, blogLike, blogDelete }) => {
+const BlogList = ({ user, blogLike, blogDelete }) => {
   // const blogsFiltered = blogs.filter(blog => blog.user.username === user.username)
   // console.log(blogsFiltered)
 
@@ -8,9 +9,15 @@ const BlogList = ({ user, blogs, blogLike, blogDelete }) => {
     blogLike(blogObject)
   }
 
+  const blogs = useSelector(state => state.blogs)
+  // console.log('blogs', blogs)
+
+  const copies = [...blogs]
+  copies.sort((a, b) => b.likes - a.likes)
+
   return (
     <div>
-      {blogs.map(blog =>
+      {copies.map(blog =>
         <Blog
           key={blog.id}
           user={user}

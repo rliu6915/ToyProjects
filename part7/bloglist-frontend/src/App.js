@@ -7,28 +7,27 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import BlogCreate from './components/BlogCreate'
 import ToggLable from './components/ToggLable'
-// import { initializeBlogs } from './reducers/blogReducer'
+import { initializeBlogs } from './reducers/blogReducer'
 
 import { useDispatch } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
+  // const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
   // const [errorMessage, setErrorMessage] = useState(null)
   // const [notification, setNotification] = useState(null)
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )
-  }, [blogs])
-
   // useEffect(() => {
-  //   dispatch(initializeBlogs())
-  // }, [dispatch])
+  //   blogService.getAll().then(blogs =>
+  //     setBlogs( blogs )
+  //   )
+  // }, [blogs])
+  useEffect(() => {
+    dispatch(initializeBlogs())
+  }, [dispatch])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
@@ -60,7 +59,7 @@ const App = () => {
       type: 'notification'
     }, 5))
 
-    setBlogs(blogs.concat(returnedBlog))
+    // setBlogs(blogs.concat(returnedBlog))
   }
 
   // login form
@@ -104,11 +103,11 @@ const App = () => {
       likes: blogObject.likes + 1
     }
     const returnedBlog = await blogService.like(newBlog.id, newBlog)
-    setBlogs(
-      blogs.map(
-        blog => blog.id !== returnedBlog.id ? blog : returnedBlog
-      )
-    )
+    // setBlogs(
+    //   blogs.map(
+    //     blog => blog.id !== returnedBlog.id ? blog : returnedBlog
+    //   )
+    // )
   }
 
   if (user === null) {
@@ -126,7 +125,7 @@ const App = () => {
   const blogDelete = async (blogObject) => {
     if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
       await blogService.remove(blogObject.id)
-      setBlogs(blogs.filter(blog => blog.id !== blogObject.id))
+      // (blogs.filter(blog => blog.id !== blogObject.id))
     }
   }
 
@@ -142,7 +141,6 @@ const App = () => {
       </ToggLable>
       <BlogList
         user={user}
-        blogs={blogs.sort((a, b) => b.likes - a.likes)}
         blogLike={blogLike}
         blogDelete={blogDelete}
       />
