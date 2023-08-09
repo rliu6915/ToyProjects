@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import BlogCreate from './components/BlogCreate'
 import ToggLable from './components/ToggLable'
-import { initializeBlogs } from './reducers/blogReducer'
+import { deleteBlog, initializeBlogs } from './reducers/blogReducer'
 import { createBlog } from './reducers/blogReducer'
 
 import { useDispatch } from 'react-redux'
@@ -126,10 +126,11 @@ const App = () => {
 
   // delete blog
 
-  const blogDelete = async (blogObject) => {
+  const blogDelete = (blogObject) => {
     if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
-      await blogService.remove(blogObject.id)
+      // await blogService.remove(blogObject.id)
       // (blogs.filter(blog => blog.id !== blogObject.id))
+      dispatch(deleteBlog(blogObject.id))
     }
   }
 
