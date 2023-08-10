@@ -50,6 +50,7 @@ const App = () => {
     }, 5))
 
     dispatch(createBlog(blogObject))
+    dispatch(initializeBlogs())
   }
 
   // login form

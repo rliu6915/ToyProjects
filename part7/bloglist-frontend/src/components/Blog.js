@@ -1,6 +1,9 @@
+import { useSelector } from 'react-redux'
 import React, { useState } from 'react'
 
-const Blog = ({ user, blog, hanldeLikeChange, handelBlogDelete }) => {
+const Blog = ({ blog, hanldeLikeChange, handelBlogDelete }) => {
+  const loginUser = useSelector(state => state.loginUser)
+  // console.log('loginUser in BL', loginUser)
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -16,6 +19,9 @@ const Blog = ({ user, blog, hanldeLikeChange, handelBlogDelete }) => {
   const handleViewChange = () => {
     setVisible(!visible)
   }
+
+  // console.log('blog.user.username', blog.user.name)
+  // console.log('loginUser.username', loginUser.username)
 
   return (
     <div className="blog" style={blogStyle}>
@@ -38,7 +44,7 @@ const Blog = ({ user, blog, hanldeLikeChange, handelBlogDelete }) => {
         <div>
           {blog.user.name}
         </div>
-        {blog.user.username === user.username && (
+        {blog.user.username === loginUser.username && (
           <div>
             <button onClick={handelBlogDelete}>remove</button>
           </div>

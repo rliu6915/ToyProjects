@@ -10,15 +10,13 @@ const BlogList = ({ blogDelete, blogLike }) => {
   const copies = [...blogs]
   copies.sort((a, b) => b.likes - a.likes)
 
-  const loginUser = useSelector(state => state.loginUser)
-  console.log('loginUser in BL', loginUser)
+  console.log('copies', copies)
 
   return (
     <div>
       {copies.map(blog =>
         <Blog
           key={blog.id}
-          user={loginUser}
           blog={blog}
           hanldeLikeChange={() => blogLike(blog)}
           handelBlogDelete={() => blogDelete(blog)}
