@@ -19,6 +19,9 @@ import { initializeUser } from './reducers/loginReducer'
 const App = () => {
   const dispatch = useDispatch()
 
+  const loginUser = useSelector(state => state.loginUser)
+  // console.log('loginUser', loginUser)
+
   useEffect(() => {
     dispatch(initializeBlogs())
   }, [dispatch])
@@ -29,7 +32,12 @@ const App = () => {
       dispatch(initializeUser(user))
       blogService.setToken(user.token)
     }
+    // console.log('user', user)
   }, [])
+
+  useEffect(() => {
+    storageService.saveUser(loginUser)
+  }, [loginUser])
 
   // create blog
   const blogCreateRef = useRef()
@@ -67,9 +75,6 @@ const App = () => {
       dispatch(deleteBlog(blogObject.id))
     }
   }
-
-  const loginUser = useSelector(state => state.loginUser)
-  console.log('loginUser', loginUser)
 
   if (loginUser === null) {
     return (
