@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 import { setUser } from './reducers/loginReducer'
 import { initializeUser } from './reducers/loginReducer'
+import { initializeUsers } from './reducers/userReducer'
 
 import { Route, Routes } from 'react-router-dom'
 import Users from './components/Users'
@@ -27,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeBlogs())
+    dispatch(initializeUsers())
   }, [dispatch])
 
   useEffect(() => {
