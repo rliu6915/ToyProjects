@@ -17,14 +17,23 @@ import { setUser } from './reducers/loginReducer'
 import { initializeUser } from './reducers/loginReducer'
 import { initializeUsers } from './reducers/userReducer'
 
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useMatch } from 'react-router-dom'
 import Users from './components/Users'
+import Individual from './components/Individual'
 
 const App = () => {
   const dispatch = useDispatch()
 
   const loginUser = useSelector(state => state.loginUser)
   // console.log('loginUser', loginUser)
+
+  const users = useSelector(state => state.users)
+  console.log('users', users)
+  const match = useMatch('/users/:id')
+  const currentUser = match
+    ? users.find(user => user.id === match.params.id)
+    : null
+  console.log('currentUser', currentUser)
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -92,6 +101,20 @@ const App = () => {
     )
   }
 
+  // const users = useSelector(state => state.users)
+  // const match = useMatch('/users/:id')
+  // const currentUser = match
+  //   ? users.find(user => user.id === Number(match.params.id))
+  //   : null
+  // const currentUser = {
+  //   name: 'test',
+  //   blogs: [
+  //     {
+  //       title: 'test',
+  //     }
+  //   ]
+  // }
+
   return (
     <div>
       <h2>blogs</h2>
@@ -100,6 +123,7 @@ const App = () => {
       <Routes>
         {/* <Route path='/' element={<BlogList />} /> */}
         <Route path='/users' element={<Users />} />
+        <Route path='/users/:id' element={<Individual user={currentUser} />} />
         {/* <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
           <BlogCreate
             createBlog={addBlog}
