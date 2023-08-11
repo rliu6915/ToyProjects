@@ -16,6 +16,9 @@ import { setNotification } from './reducers/notificationReducer'
 import { setUser } from './reducers/loginReducer'
 import { initializeUser } from './reducers/loginReducer'
 
+import { Route, Routes } from 'react-router-dom'
+import Users from './components/Users'
+
 const App = () => {
   const dispatch = useDispatch()
 
@@ -92,15 +95,19 @@ const App = () => {
       <h2>blogs</h2>
       <Notification />
       <Logout />
-      <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
-        <BlogCreate
-          createBlog={addBlog}
-        />
-      </ToggLable>
-      <BlogList
-        blogLike={blogLike}
-        blogDelete={blogDelete}
-      />
+      <Routes>
+        {/* <Route path='/' element={<BlogList />} /> */}
+        <Route path='/users' element={<Users />} />
+        {/* <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
+          <BlogCreate
+            createBlog={addBlog}
+          />
+        </ToggLable>
+        <BlogList
+          blogLike={blogLike}
+          blogDelete={blogDelete}
+        /> */}
+      </Routes>
     </div>
   )
 }
