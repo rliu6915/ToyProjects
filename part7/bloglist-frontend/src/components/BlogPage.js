@@ -1,0 +1,52 @@
+
+import { useDispatch } from 'react-redux'
+import { likeBlog } from '../reducers/blogReducer'
+import { deleteBlog } from '../reducers/blogReducer'
+import { useSelector } from 'react-redux'
+import { useMatch } from 'react-router-dom'
+
+const BlogPage = () => {
+  const dispatch = useDispatch()
+  const loginUser = useSelector(state => state.loginUser)
+
+  const blogs = useSelector(state => state.blogs)
+  const matchBlog = useMatch('/blogs/:id')
+  const blog = matchBlog
+    ? blogs.find(blog => blog.id === matchBlog.params.id)
+    : null
+
+  const hanldeLikeChange = (blogObject) => {
+    dispatch(likeBlog(blogObject.id, blogObject))
+  }
+
+  const handelBlogDelete = (blogObject) => {
+    if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
+      dispatch(deleteBlog(blogObject.id))
+    }
+  }
+
+  return (
+    <div>
+      <h2>{blog.title} {blog.author}</h2>
+      <div>
+        {blog.url}
+      </div>
+      <div>
+        {blog.likes}
+        <button className="likeButton" onClick={() => hanldeLikeChange(blog)}>like</button>
+      </div>
+      <div>
+        {`added by ${blog.user.name}`}
+      </div>
+      <div>
+        {blog.user.username === loginUser.username && (
+          <div>
+            <button onClick={handelBlogDelete}>remove</button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default BlogPage

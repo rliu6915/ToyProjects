@@ -5,7 +5,7 @@ import ToggLable from './ToggLable'
 
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { createBlog, initializeBlogs } from '../reducers/blogReducer'
+import { createBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
 const Home = () => {
@@ -20,7 +20,6 @@ const Home = () => {
     }, 5))
 
     dispatch(createBlog(blogObject))
-    dispatch(initializeBlogs())
   }
 
   return (
@@ -29,9 +28,8 @@ const Home = () => {
         <BlogCreate
           createBlog={addBlog}
         />
-        <BlogCreate />
       </ToggLable>
-      <BlogList />
+      <BlogList/>
     </div>
   )
 }
