@@ -55,20 +55,6 @@ const App = () => {
     storageService.saveUser(loginUser)
   }, [loginUser])
 
-  // create blog
-  const blogCreateRef = useRef()
-
-  const addBlog = async (blogObject) => {
-    blogCreateRef.current.toggleVisibility()
-    dispatch(setNotification({
-      text: `a new blog ${blogObject.title} by ${blogObject.author} added`,
-      type: 'notification'
-    }, 5))
-
-    dispatch(createBlog(blogObject))
-    dispatch(initializeBlogs())
-  }
-
   // login form
   const handelLogin = async (loginObject) => {
     try {
@@ -80,18 +66,6 @@ const App = () => {
       }, 5))
     }
   }
-
-  // // like
-  // const blogLike = (blogObject) => {
-  //   dispatch(likeBlog(blogObject.id, blogObject))
-  // }
-
-  // // delete blog
-  // const blogDelete = (blogObject) => {
-  //   if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
-  //     dispatch(deleteBlog(blogObject.id))
-  //   }
-  // }
 
   if (loginUser === null) {
     return (
@@ -109,7 +83,7 @@ const App = () => {
       <Notification />
       <Logout />
       <Routes>
-        <Route path='/' element={<Home blogCreateRef={blogCreateRef} addBlog={addBlog} />} />
+        <Route path='/' element={<Home />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<Individual user={currentUser} />} />
         {/* <Route path='/blogs/:id' element={<Blog />} /> */}

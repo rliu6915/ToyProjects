@@ -1,21 +1,36 @@
 
-import Blog from './Blog'
 import BlogCreate from './BlogCreate'
 import BlogList from './BlogList'
 import ToggLable from './ToggLable'
 
-const Home = ({ blogCreateRef, addBlog }) => {
+import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { createBlog, initializeBlogs } from '../reducers/blogReducer'
+import { setNotification } from '../reducers/notificationReducer'
+
+const Home = () => {
+  const dispatch = useDispatch()
+
+  const blogCreateRef = useRef()
+  const addBlog = async (blogObject) => {
+    blogCreateRef.current.toggleVisibility()
+    dispatch(setNotification({
+      text: `a new blog ${blogObject.title} by ${blogObject.author} added`,
+      type: 'notification'
+    }, 5))
+
+    dispatch(createBlog(blogObject))
+    dispatch(initializeBlogs())
+  }
+
   return (
     <div>
       <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
         <BlogCreate
           createBlog={addBlog}
         />
+        <BlogCreate />
       </ToggLable>
-      {/* <BlogList
-        blogLike={blogLike}
-        blogDelete={blogDelete}
-      /> */}
       <BlogList />
     </div>
   )
