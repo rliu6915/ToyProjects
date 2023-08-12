@@ -21,6 +21,8 @@ import { Route, Routes, useMatch } from 'react-router-dom'
 import Users from './components/Users'
 import Individual from './components/Individual'
 
+import Home from './components/Home'
+
 const App = () => {
   const dispatch = useDispatch()
 
@@ -79,17 +81,17 @@ const App = () => {
     }
   }
 
-  // like
-  const blogLike = (blogObject) => {
-    dispatch(likeBlog(blogObject.id, blogObject))
-  }
+  // // like
+  // const blogLike = (blogObject) => {
+  //   dispatch(likeBlog(blogObject.id, blogObject))
+  // }
 
-  // delete blog
-  const blogDelete = (blogObject) => {
-    if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
-      dispatch(deleteBlog(blogObject.id))
-    }
-  }
+  // // delete blog
+  // const blogDelete = (blogObject) => {
+  //   if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
+  //     dispatch(deleteBlog(blogObject.id))
+  //   }
+  // }
 
   if (loginUser === null) {
     return (
@@ -101,29 +103,16 @@ const App = () => {
     )
   }
 
-  // const users = useSelector(state => state.users)
-  // const match = useMatch('/users/:id')
-  // const currentUser = match
-  //   ? users.find(user => user.id === Number(match.params.id))
-  //   : null
-  // const currentUser = {
-  //   name: 'test',
-  //   blogs: [
-  //     {
-  //       title: 'test',
-  //     }
-  //   ]
-  // }
-
   return (
     <div>
       <h2>blogs</h2>
       <Notification />
       <Logout />
       <Routes>
-        {/* <Route path='/' element={<BlogList />} /> */}
+        <Route path='/' element={<Home blogCreateRef={blogCreateRef} addBlog={addBlog} />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<Individual user={currentUser} />} />
+        {/* <Route path='/blogs/:id' element={<Blog />} /> */}
         {/* <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
           <BlogCreate
             createBlog={addBlog}

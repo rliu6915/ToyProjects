@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux'
 import Blog from './Blog'
 
-const BlogList = ({ blogDelete, blogLike }) => {
+import { useDispatch } from 'react-redux'
+import { deleteBlog, likeBlog } from '../reducers/blogReducer'
+
+const BlogList = () => {
   // const blogsFiltered = blogs.filter(blog => blog.user.username === user.username)
   // console.log(blogsFiltered)
+
+  const dispatch = useDispatch()
 
   const blogs = useSelector(state => state.blogs)
   // console.log('blogs', blogs)
@@ -11,6 +16,18 @@ const BlogList = ({ blogDelete, blogLike }) => {
   copies.sort((a, b) => b.likes - a.likes)
 
   console.log('copies', copies)
+
+  // like
+  const blogLike = (blogObject) => {
+    dispatch(likeBlog(blogObject.id, blogObject))
+  }
+
+  // delete blog
+  const blogDelete = (blogObject) => {
+    if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
+      dispatch(deleteBlog(blogObject.id))
+    }
+  }
 
   return (
     <div>
