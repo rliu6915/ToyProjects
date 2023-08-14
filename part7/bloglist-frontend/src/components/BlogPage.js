@@ -4,8 +4,11 @@ import { likeBlog } from '../reducers/blogReducer'
 import { deleteBlog } from '../reducers/blogReducer'
 import { useSelector } from 'react-redux'
 import { useMatch } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const BlogPage = () => {
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
   const loginUser = useSelector(state => state.loginUser)
 
@@ -22,6 +25,7 @@ const BlogPage = () => {
   const handelBlogDelete = (blogObject) => {
     if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
       dispatch(deleteBlog(blogObject.id))
+      navigate('/')
     }
   }
 
@@ -43,7 +47,7 @@ const BlogPage = () => {
       <div>
         {blog.user.username === loginUser.username && (
           <div>
-            <button onClick={handelBlogDelete}>remove</button>
+            <button onClick={() => handelBlogDelete(blog)}>remove</button>
           </div>
         )}
       </div>
