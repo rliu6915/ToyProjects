@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import blogService from './services/blogs'
 import storageService from './services/storage'
-import Logout from './components/Logout'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import { useSelector } from 'react-redux'
@@ -19,6 +18,7 @@ import Individual from './components/Individual'
 
 import Home from './components/Home'
 import BlogPage from './components/BlogPage'
+import Menu from './components/Menu'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -33,22 +33,6 @@ const App = () => {
     ? users.find(user => user.id === match.params.id)
     : null
   // console.log('currentUser', currentUser)
-
-  // const blogs = useSelector(state => state.blogs)
-  // const matchBlog = useMatch('/blogs/:id')
-  // const blog = matchBlog
-  //   ? blogs.find(blog => blog.id === matchBlog.params.id)
-  //   : null
-  // const blog = {
-  //   title: 'test',
-  //   author: 'test a',
-  //   url: 'test.com',
-  //   likes: 1,
-  //   user: {
-  //     name: 'test name',
-  //     username: 'test username',
-  //   }
-  // }
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -92,9 +76,10 @@ const App = () => {
 
   return (
     <div>
+      <Menu />
       <h2>blogs</h2>
       <Notification />
-      <Logout />
+      {/* <Logout /> */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/users' element={<Users />} />

@@ -10,14 +10,12 @@ const Logout = () => {
   }
   const loginUser = useSelector(state => state.loginUser)
   return (
-    <div>
-      <p>
-        {loginUser.name} logged in
-        <button onClick={handleLogout}>
-          logout
-        </button>
-      </p>
-    </div>
+    <>
+      {loginUser.name} logged in
+      <button onClick={handleLogout}>
+        logout
+      </button>
+    </>
   )
 }
 

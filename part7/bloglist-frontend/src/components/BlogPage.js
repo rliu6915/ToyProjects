@@ -25,6 +25,8 @@ const BlogPage = () => {
     }
   }
 
+  console.log('blog', blog)
+
   return (
     <div>
       <h2>{blog.title} {blog.author}</h2>
