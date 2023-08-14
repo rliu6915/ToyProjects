@@ -1,20 +1,39 @@
 import Notification from './Notification'
-import React, { useState } from 'react'
 
-const LoginForm = ({ createLogin }) => {
+import { useDispatch } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
+import { removeUser, setUser } from '../reducers/loginReducer'
+import { useState } from 'react'
+
+const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+
+  // login form
+  const createLogin = async (loginObject) => {
+    try {
+      dispatch(setUser(loginObject))
+    } catch (exception) {
+      dispatch(setNotification({
+        text: 'Wrong username or password',
+        type: 'error'
+      }, 5))
+    }
+  }
 
   const handelLogin = (event) => {
     event.preventDefault()
-    console.log('logging in with', username, password)
+    // console.log('logging in with', username, password)
 
     createLogin({
-      username, password
+      username: username,
+      password: password
     })
 
-    setUsername('')
-    setPassword('')
+    // setUsername('')
+    // setPassword('')
+    dispatch(removeUser())
   }
 
   return (

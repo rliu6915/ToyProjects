@@ -7,12 +7,7 @@ const BlogCreate = ({ createBlog }) => {
 
   const addBlog = (e) => {
     e.preventDefault()
-    // console.log('title', title)
-    // console.log('author', author)
     const blogObject = {
-      // title: e.target.title.value,
-      // author: e.target.author.value,
-      // url: e.target.url.value,
       title: title,
       author: author,
       url: url,

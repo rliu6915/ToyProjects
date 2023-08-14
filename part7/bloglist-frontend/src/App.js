@@ -6,8 +6,6 @@ import Notification from './components/Notification'
 import { useSelector } from 'react-redux'
 
 import { useDispatch } from 'react-redux'
-import { setNotification } from './reducers/notificationReducer'
-import { setUser } from './reducers/loginReducer'
 import { initializeUser } from './reducers/loginReducer'
 import { initializeUsers } from './reducers/userReducer'
 import { initializeBlogs } from './reducers/blogReducer'
@@ -52,24 +50,25 @@ const App = () => {
     storageService.saveUser(loginUser)
   }, [loginUser])
 
-  // login form
-  const handelLogin = async (loginObject) => {
-    try {
-      dispatch(setUser(loginObject))
-    } catch (exception) {
-      dispatch(setNotification({
-        text: 'Wrong username or password',
-        type: 'error'
-      }, 5))
-    }
-  }
+  // // login form
+  // const handelLogin = async (loginObject) => {
+  //   try {
+  //     dispatch(setUser(loginObject))
+  //   } catch (exception) {
+  //     dispatch(setNotification({
+  //       text: 'Wrong username or password',
+  //       type: 'error'
+  //     }, 5))
+  //   }
+  // }
 
   if (loginUser === null) {
     return (
       <div>
-        <LoginForm
+        {/* <LoginForm
           createLogin={handelLogin}
-        />
+        /> */}
+        <LoginForm />
       </div>
     )
   }

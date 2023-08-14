@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux'
 import { createBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
+import { initializeBlogs } from '../reducers/blogReducer'
+
 const Home = () => {
   const dispatch = useDispatch()
 
@@ -20,6 +22,7 @@ const Home = () => {
     }, 5))
 
     dispatch(createBlog(blogObject))
+    dispatch(initializeBlogs())
   }
 
   return (
