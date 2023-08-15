@@ -33,7 +33,7 @@ const App = () => {
   // console.log('currentUser', currentUser)
 
   const blogs = useSelector(state => state.blogs)
-  console.log('blogs', blogs)
+  // console.log('blogs', blogs)
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -53,6 +53,10 @@ const App = () => {
     storageService.saveUser(loginUser)
   }, [loginUser])
 
+  useEffect(() => {
+    dispatch(initializeBlogs())
+  }, [blogs])
+
   if (loginUser === null) {
     return (
       <div>
@@ -71,7 +75,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<Individual user={currentUser} />} />
-        <Route path='/blogs/:id' element={<BlogPage blogs={blogs} />} />
+        <Route path='/blogs/:id' element={<BlogPage />} />
       </Routes>
     </div>
   )

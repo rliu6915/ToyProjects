@@ -12,9 +12,9 @@ const BlogList = () => {
 
   return (
     <div>
-      {copies.map(blog =>
+      {copies.map((blog, index) =>
         <Blog
-          key={blog.id}
+          key={index}
           blog={blog}
         />
       )}

@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 import { useMatch } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-const BlogPage = ({ blogs }) => {
+const BlogPage = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
   const loginUser = useSelector(state => state.loginUser)
+  const blogs = useSelector(state => state.blogs)
 
   // const blogs = useSelector(state => state.blogs)
   // console.log('blogs', blogs)
