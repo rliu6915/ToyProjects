@@ -32,6 +32,9 @@ const App = () => {
     : null
   // console.log('currentUser', currentUser)
 
+  const blogs = useSelector(state => state.blogs)
+  console.log('blogs', blogs)
+
   useEffect(() => {
     dispatch(initializeBlogs())
     dispatch(initializeUsers())
@@ -50,24 +53,9 @@ const App = () => {
     storageService.saveUser(loginUser)
   }, [loginUser])
 
-  // // login form
-  // const handelLogin = async (loginObject) => {
-  //   try {
-  //     dispatch(setUser(loginObject))
-  //   } catch (exception) {
-  //     dispatch(setNotification({
-  //       text: 'Wrong username or password',
-  //       type: 'error'
-  //     }, 5))
-  //   }
-  // }
-
   if (loginUser === null) {
     return (
       <div>
-        {/* <LoginForm
-          createLogin={handelLogin}
-        /> */}
         <LoginForm />
       </div>
     )
@@ -83,7 +71,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<Individual user={currentUser} />} />
-        <Route path='/blogs/:id' element={<BlogPage />} />
+        <Route path='/blogs/:id' element={<BlogPage blogs={blogs} />} />
       </Routes>
     </div>
   )

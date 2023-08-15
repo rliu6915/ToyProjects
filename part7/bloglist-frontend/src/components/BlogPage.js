@@ -6,13 +6,14 @@ import { useSelector } from 'react-redux'
 import { useMatch } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-const BlogPage = () => {
+const BlogPage = ({ blogs }) => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
   const loginUser = useSelector(state => state.loginUser)
 
-  const blogs = useSelector(state => state.blogs)
+  // const blogs = useSelector(state => state.blogs)
+  // console.log('blogs', blogs)
   const matchBlog = useMatch('/blogs/:id')
   const blog = matchBlog
     ? blogs.find(blog => blog.id === matchBlog.params.id)
@@ -29,7 +30,11 @@ const BlogPage = () => {
     }
   }
 
-  console.log('blog', blog)
+  // console.log('blog', blog)
+
+  if (!blog) {
+    return null
+  }
 
   return (
     <div>
