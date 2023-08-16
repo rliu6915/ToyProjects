@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { useMatch } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
+import Comments from './Comments'
+
 const BlogPage = () => {
   const navigate = useNavigate()
 
@@ -59,16 +61,7 @@ const BlogPage = () => {
         )}
       </div>
       <div>
-        <h2>comments</h2>
-        <ul>
-          {blog.comments.map((comment, index) => {
-            return (
-              <li key={index}>
-                {comment}
-              </li>
-            )
-          })}
-        </ul>
+        <Comments />
       </div>
     </div>
   )
