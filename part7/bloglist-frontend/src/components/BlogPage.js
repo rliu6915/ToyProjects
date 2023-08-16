@@ -33,6 +33,7 @@ const BlogPage = () => {
 
   // console.log('blog', blog)
 
+
   if (!blog) {
     return null
   }
@@ -56,6 +57,18 @@ const BlogPage = () => {
             <button onClick={() => handelBlogDelete(blog)}>remove</button>
           </div>
         )}
+      </div>
+      <div>
+        <h2>comments</h2>
+        <ul>
+          {blog.comments.map((comment, index) => {
+            return (
+              <li key={index}>
+                {comment}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )
