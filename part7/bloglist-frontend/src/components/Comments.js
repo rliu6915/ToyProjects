@@ -14,7 +14,6 @@ const Comments = () => {
 
   return (
     <>
-      <h2>comments</h2>
       <ul>
         {blog.comments.map((comment) => {
           return (

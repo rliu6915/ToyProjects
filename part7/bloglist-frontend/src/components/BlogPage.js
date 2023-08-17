@@ -7,6 +7,7 @@ import { useMatch } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 import Comments from './Comments'
+import CommentForm from './CommentForm'
 
 const BlogPage = () => {
   const navigate = useNavigate()
@@ -61,6 +62,8 @@ const BlogPage = () => {
         )}
       </div>
       <div>
+        <h2>comments</h2>
+        <CommentForm />
         <Comments />
       </div>
     </div>
