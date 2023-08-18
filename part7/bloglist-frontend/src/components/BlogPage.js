@@ -63,7 +63,7 @@ const BlogPage = () => {
       </div>
       <div>
         <h2>comments</h2>
-        <CommentForm />
+        <CommentForm blog={blog}/>
         <Comments />
       </div>
     </div>

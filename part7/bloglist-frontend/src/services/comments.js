@@ -6,8 +6,9 @@ const getAll = async (id) => {
   return response.data
 }
 
-const create = async () => {
-
+const create = async (newObject) => {
+  const response = await axios.post(`${baseUrl}/${newObject.blog}/comments`, newObject)
+  return response.data
 }
 
 export default { getAll, create }
