@@ -16,7 +16,7 @@ const LoginForm = () => {
   // login form
   const createLogin = async (loginObject) => {
     try {
-      dispatch(setUser(loginObject))
+      await dispatch(setUser(loginObject))
       dispatch(setNotification({
         text: `Welcome ${loginObject.username}`,
         variant: 'success'

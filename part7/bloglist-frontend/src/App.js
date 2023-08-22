@@ -47,7 +47,7 @@ const App = () => {
       blogService.setToken(user.token)
     }
     // console.log('user', user)
-  }, [])
+  }, [loginUser])
 
   useEffect(() => {
     storageService.saveUser(loginUser)
