@@ -68,7 +68,6 @@ const App = () => {
   return (
     <div className='container'>
       <Menu />
-      <h2>blogs</h2>
       <Notification />
       {/* <Logout /> */}
       <Routes>

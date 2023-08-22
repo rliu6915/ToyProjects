@@ -13,7 +13,7 @@ const CommentForm = ({ blog }) => {
     console.log('add comment')
     dispatch(setNotification({
       text: `a new comment ${newComment.content} added`,
-      type: 'notification'
+      variant: 'success'
     }, 5))
     dispatch(commentBlog(newComment))
   }

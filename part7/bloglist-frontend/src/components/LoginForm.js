@@ -17,10 +17,14 @@ const LoginForm = () => {
   const createLogin = async (loginObject) => {
     try {
       dispatch(setUser(loginObject))
+      dispatch(setNotification({
+        text: `Welcome ${loginObject.username}`,
+        variant: 'success'
+      }, 5))
     } catch (exception) {
       dispatch(setNotification({
         text: 'Wrong username or password',
-        type: 'error'
+        variant: 'danger'
       }, 5))
     }
   }

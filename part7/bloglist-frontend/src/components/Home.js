@@ -18,7 +18,7 @@ const Home = () => {
     blogCreateRef.current.toggleVisibility()
     dispatch(setNotification({
       text: `a new blog ${blogObject.title} by ${blogObject.author} added`,
-      type: 'notification'
+      variant: 'success'
     }, 5))
 
     dispatch(createBlog(blogObject))
@@ -27,6 +27,7 @@ const Home = () => {
 
   return (
     <div>
+      <h2>Blogs</h2>
       <ToggLable buttonLabel='create blog' ref={blogCreateRef}>
         <BlogCreate
           createBlog={addBlog}
