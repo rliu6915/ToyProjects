@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux'
 import Blog from './Blog'
 
+import Table from 'react-bootstrap/Table'
+
 const BlogList = () => {
   // const blogsFiltered = blogs.filter(blog => blog.user.username === user.username)
   // console.log(blogsFiltered)
@@ -12,12 +14,16 @@ const BlogList = () => {
 
   return (
     <div>
-      {copies.map((blog, index) =>
-        <Blog
-          key={index}
-          blog={blog}
-        />
-      )}
+      <Table striped bordered hover>
+        <tbody>
+          {copies.map((blog, index) =>
+            <Blog
+              key={index}
+              blog={blog}
+            />
+          )}
+        </tbody>
+      </Table>
     </div>
   )
 }
