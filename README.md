@@ -13,9 +13,8 @@ This repository contains my own exercise solutions to the 2023 edition of the [F
 
 ### Certificates
 
-![Certificate of completion Fullstack Open Course from the University of Helsinki]
+![Certificate of completion Fullstack Open Course from the University of Helsinki](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/134505da2c4663fc00e46b1ef93e656a)
 
-[Certificate of completion GraphQL part of the course]
 
 [Certificate of completion CI/CD part of the course]
 
@@ -94,13 +93,13 @@ This part is about _GraphQL_, Facebook's alternative to _REST API_ for communica
 
 This part is about how to build native Android and iOS mobile applications with _JavaScript_ and _React_ using the _React Native_ framework. By developing an entire mobile application from scratch this part gives a good dive into the _React Native_ ecosystem. It covers concepts such as how to render native user interface components with _React Native_, how to create beautiful user interfaces, how to communicate with a server, and how to test a _React Native_ application.
 
-- [rate-repository-app](https://github.com/YuriSpiridonov/rate-repository-app) - The app source code.
+- [rate-repository-app](/part10/rate-repository-app) - The app source code.
 
 ### Part 11 - [CI/CD](https://fullstackopen.com/en/part11)
 
 This part shows and esplains of why you should use _Continuous Integration / Continuous Delivery (CI/CD) system_ and what can it do for you. And how to get started with _[GitHub Actions](https://github.com/features/actions)_.
 
-- [full-stack-open-pokedex](https://github.com/YuriSpiridonov/full-stack-open-pokedex) - Exercise repository.
+- [full-stack-open-pokedex](/part11/full-stack-open-pokedex) - Exercise repository.
 - [full-stack-open-pokedex](https://pokedex-fso.fly.dev/) - Deployed app.
-- [phonebook-cicd](https://github.com/YuriSpiridonov/phonebook-cicd) - Exercice repository. Pipeline for another project.
+- [phonebook-cicd](/part11/phonebook-cicd) - Exercice repository. Pipeline for another project.
 - [phonebook-cicd](https://phonebook-cicd.fly.dev/) - Deployed app.
