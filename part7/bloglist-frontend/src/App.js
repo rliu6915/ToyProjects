@@ -59,7 +59,7 @@ const App = () => {
 
   if (loginUser === null) {
     return (
-      <div>
+      <div className='container'>
         <LoginForm />
       </div>
     )
