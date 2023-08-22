@@ -5,6 +5,9 @@ import { setNotification } from '../reducers/notificationReducer'
 import { removeUser, setUser } from '../reducers/loginReducer'
 import { useState } from 'react'
 
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -42,26 +45,24 @@ const LoginForm = () => {
 
       <Notification />
 
-      <form onSubmit={handelLogin}>
-        <div>
-          username
-          <input
+      <Form onSubmit={handelLogin}>
+        <Form.Group>
+          <Form.Label>username:</Form.Label>
+          <Form.Control
             id = 'username'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-        <div>
-          password
-          <input
+          <Form.Label>password:</Form.Label>
+          <Form.Control
             id = 'password'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <button id="login-button" type="submit">login</button>
-      </form>
+          <Button variant='primary' id="login-button" type="submit">login</Button>
+        </Form.Group>
+      </Form>
     </div>
   )
 }
