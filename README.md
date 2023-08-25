@@ -13,7 +13,7 @@ This repository contains my own exercise solutions to the 2023 edition of the [F
 
 ### Certificates
 
-![Certificate of completion Fullstack Open Course from the University of Helsinki](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/134505da2c4663fc00e46b1ef93e656a)
+[Certificate of completion Fullstack Open Course from the University of Helsinki](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/134505da2c4663fc00e46b1ef93e656a)
 
 
 [Certificate of completion CI/CD part of the course]
