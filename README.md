@@ -99,5 +99,5 @@ This part is about how to build native Android and iOS mobile applications with 
 
 This part shows and esplains of why you should use _Continuous Integration / Continuous Delivery (CI/CD) system_ and what can it do for you. And how to get started with _[GitHub Actions](https://github.com/features/actions)_.
 
-- [full-stack-open-pokedex](../../full-stack-open-pokedex) - Exercise repository.
+- [full-stack-open-pokedex](../../../full-stack-open-pokedex) - Exercise repository.
 - [full-stack-open-pokedex](https://pokedex-fso.fly.dev/) - Deployed app.
