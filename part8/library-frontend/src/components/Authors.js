@@ -2,7 +2,7 @@ const Authors = (props) => {
   if (!props.show) {
     return null
   }
-  
+
   const authors = props.auhtors
 
   return (
@@ -27,5 +27,4 @@ const Authors = (props) => {
     </div>
   )
 }
-
 export default Authors
