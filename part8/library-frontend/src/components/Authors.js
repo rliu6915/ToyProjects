@@ -2,9 +2,7 @@ const Authors = (props) => {
   if (!props.show) {
     return null
   }
-  
   const authors = props.auhtors
-
   return (
     <div>
       <h2>authors</h2>
