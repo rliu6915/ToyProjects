@@ -1,3 +1,5 @@
+import Birthday from "./Birthday"
+
 const Authors = (props) => {
   if (!props.show) {
     return null
@@ -22,6 +24,7 @@ const Authors = (props) => {
           ))}
         </tbody>
       </table>
+      <Birthday />
     </div>
   )
 }
