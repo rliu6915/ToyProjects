@@ -3,46 +3,8 @@ import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 
-import { gql, useQuery } from '@apollo/client'
-
-const ALL_AUTHORS = gql`
-  query {
-    allAuthors {
-      name
-      born
-      id
-      bookCount
-    }
-  }
-`
-
-const ALL_BOOKS = gql`
-  query {
-    allBooks {
-      title
-      author
-      published
-      id
-    }
-  }
-`
-
-// const CREATE_BOOK = gql`
-//   mutation createBook($title: String!, $author: String!, $published: Int!, $genres: [String!]!) {
-//     addBook(
-//       title: $title
-//       author: $author
-//       published: $published
-//       genres: $genres
-//     ) {
-//       title
-//       author
-//       published
-//       genres
-//       id
-//     }
-//   }
-// `
+import { useQuery } from '@apollo/client'
+import { ALL_AUTHORS, ALL_BOOKS } from './queries'
 
 const App = () => {
   const [page, setPage] = useState('authors')
