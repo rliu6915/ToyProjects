@@ -93,33 +93,51 @@ const resolvers = {
       const findAuthor = await Author.findOne({name: args.author})
       console.log("findAuthor: ", findAuthor)
       if (!findAuthor) { // if author not found
-        // create a new author
-        const newAuthor = new Author({ name: args.author, books: []})
-        await newAuthor.save()
-        // create a new book
-        console.log("newAuthor: ", newAuthor)
-        const book = await new Book({ ...args, author: newAuthor._id}).populate('author')
-        console.log("book: ", book)
-        // update the author's books
-        newAuthor.books = newAuthor.books.concat(book._id)
-        await newAuthor.save()
-        await book.save()
-        return book
+        try {
+          // create a new author
+          const newAuthor = new Author({ name: args.author, books: []})
+          await newAuthor.save()
+          // create a new book
+          console.log("newAuthor: ", newAuthor)
+          const book = await new Book({ ...args, author: newAuthor._id}).populate('author')
+          console.log("book: ", book)
+          // update the author's books
+          newAuthor.books = newAuthor.books.concat(book._id)
+          await newAuthor.save()
+          await book.save()
+          return book
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args,
+          })
+        }
       } else {
-        const book = await new Book({ ...args, author: findAuthor._id}).populate('author')
-        await book.save()
-        return book
+        try {
+          const book = await new Book({ ...args, author: findAuthor._id}).populate('author')
+          await book.save()
+          return book
+        } catch (error) {
+          throw new UserInputError(error.message, {
+            invalidArgs: args,
+          })
+        }
       }
     },
     editAuthor: async (root, args) => {
-      const author = await Author.findOne({name: args.name})
-      if (!author) {
-        return null
+      try {
+        const author = await Author.findOne({name: args.name})
+        if (!author) {
+          return null
+        }
+
+        author.born = args.setBornTo
+        await author.save()
+        return author
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
       }
-      
-      author.born = args.setBornTo
-      await author.save()
-      return author
     }
   }
 }
