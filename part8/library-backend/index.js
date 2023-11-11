@@ -64,12 +64,11 @@ const resolvers = {
     bookCount: async () => Book.collection.countDocuments(),
     authorCount: async () => Author.collection.countDocuments(),
     allBooks: async (root, args) => {
-      const books = await Book.find({})
-      console.log(books)
+      const books = await Book.find({}).populate('author')
       if (args.author && args.genre) {
-        return books.filter(book => book.author === args.author && book.genres.includes(args.genre))
+        return books.filter(book => book.author.name === args.author && book.genres.includes(args.genre))
       } else if (args.author) {
-        return books.filter(book => book.author === args.author)
+        return books.filter(book => book.author.name === args.author)
       } else if (args.genre) {
           return books.filter(book => book.genres.includes(args.genre))
       } else {
@@ -88,17 +87,21 @@ const resolvers = {
   },
   Mutation: {
     addBook: async (root, args) => {
+      console.log("args: ", args)
+
       // const authors = await Author.find({})
       const findAuthor = await Author.findOne({name: args.author})
+      console.log("findAuthor: ", findAuthor)
       if (!findAuthor) {
         // authors = authors.concat({ name: args.author, id: uuidv4()})
-        const author = new Author({ name: args.author, id: uuidv4()})
+        const author = new Author({ name: args.author, books: []})
         await author.save()
       }
 
       // const book = { ...args, id: uuidv4()}
       // books = books.concat(book)
-      const book = new Book({ ...args, id: uuidv4()})
+      const book = new Book({ ...args, author: findAuthor._id})
+      console.log("book: ", book)
       return book.save()
     },
     editAuthor: async (root, args) => {
