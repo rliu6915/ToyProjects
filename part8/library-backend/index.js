@@ -92,17 +92,24 @@ const resolvers = {
       // const authors = await Author.find({})
       const findAuthor = await Author.findOne({name: args.author})
       console.log("findAuthor: ", findAuthor)
-      if (!findAuthor) {
-        // authors = authors.concat({ name: args.author, id: uuidv4()})
-        const author = new Author({ name: args.author, books: []})
-        await author.save()
+      if (!findAuthor) { // if author not found
+        // create a new author
+        const newAuthor = new Author({ name: args.author, books: []})
+        await newAuthor.save()
+        // create a new book
+        console.log("newAuthor: ", newAuthor)
+        const book = await new Book({ ...args, author: newAuthor._id}).populate('author')
+        console.log("book: ", book)
+        // update the author's books
+        newAuthor.books = newAuthor.books.concat(book._id)
+        await newAuthor.save()
+        await book.save()
+        return book
+      } else {
+        const book = await new Book({ ...args, author: findAuthor._id}).populate('author')
+        await book.save()
+        return book
       }
-
-      // const book = { ...args, id: uuidv4()}
-      // books = books.concat(book)
-      const book = new Book({ ...args, author: findAuthor._id})
-      console.log("book: ", book)
-      return book.save()
     },
     editAuthor: async (root, args) => {
       // const authors = await Author.find({})
