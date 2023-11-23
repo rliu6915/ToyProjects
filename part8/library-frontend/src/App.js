@@ -12,9 +12,11 @@ const App = () => {
   const result = useQuery(ALL_AUTHORS, {
     pollInterval: 2000
   })
+  console.log("result", result.data)
   const result2 = useQuery(ALL_BOOKS, {
     pollInterval: 2000
   })
+  console.log("result2", result2.data)
 
   if (result.loading || result2.loading) {
     return <div>loading...</div>
