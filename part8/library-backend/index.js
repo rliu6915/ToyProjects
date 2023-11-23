@@ -8,6 +8,7 @@ const Book = require('./models/book')
 const User = require('./models/user')
 
 const mongoose = require('mongoose')
+const { GraphQLError } = require('graphql')
 mongoose.set('strictQuery', false)
 
 require('dotenv').config()
@@ -110,12 +111,21 @@ const resolvers = {
     bookCount: async (root) => Book.find({author: root.name}).countDocuments()
   },
   Mutation: {
-    addBook: async (root, args) => {
-      console.log("args: ", args)
+    addBook: async (root, args, context) => {
+      // console.log("args: ", args)
 
       // const authors = await Author.find({})
       const findAuthor = await Author.findOne({name: args.author})
       console.log("findAuthor: ", findAuthor)
+
+      const currentUser = context.currentUser
+      if (!currentUser) {
+        throw new GraphQLError('not authenticated', {
+          extensions: {
+            code: 'BAD_USER_INPUT'
+          }    
+        })
+      }
       if (!findAuthor) { // if author not found
         try {
           // create a new author
@@ -147,13 +157,21 @@ const resolvers = {
         }
       }
     },
-    editAuthor: async (root, args) => {
-      try {
-        const author = await Author.findOne({name: args.name})
-        if (!author) {
-          return null
-        }
+    editAuthor: async (root, args, context) => {
+      const author = await Author.findOne({name: args.name})
+      if (!author) {
+        return null
+      }
+      const currentUser = context.currentUser
+      if (!currentUser) {
+        throw new GraphQLError('not authenticated', {
+          extensions: {
+            code: 'BAD_USER_INPUT'
+          }
+        })
+      }
 
+      try {
         author.born = args.setBornTo
         await author.save()
         return author
@@ -166,7 +184,7 @@ const resolvers = {
     createUser: async (root, args) => {
       const user = new User({ username: args.username, favoriteGenre: args.favoriteGenre})
 
-      return await user.save()
+      return user.save()
         .catch(error => {
           throw new GraphQLError('Creating the user failed', {
             extensions: {
