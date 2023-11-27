@@ -4,19 +4,27 @@ import Books from './components/Books'
 import NewBook from './components/NewBook'
 import Login from './components/Login'
 
-import { useQuery } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import { ALL_AUTHORS, ALL_BOOKS } from './queries'
+import Notification from './components/Notification'
 
 const App = () => {
   const [token, setToken] = useState(null)
   const [page, setPage] = useState('authors')
   const [errorMessage, setErrorMessage] = useState(null)
+  const client = useApolloClient()
 
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {
       setErrorMessage(null)
     }, 10000)
+  }
+
+  const logout = () => {
+    setToken(null)
+    localStorage.clear()
+    client.resetStore()
   }
 
   const result = useQuery(ALL_AUTHORS, {
@@ -35,6 +43,7 @@ const App = () => {
   if (!token) {
     return (
       <div>
+        <Notification errorMessage={errorMessage} />
         <div>
           <button onClick={() => setPage('authors')}>authors</button>
           <button onClick={() => setPage('books')}>books</button>
@@ -43,18 +52,19 @@ const App = () => {
 
         <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>
         <Books show={page === 'books'} books={result2.data.allBooks}/>
-        <Login show={page === 'login'} setToken={setToken} errorMessage={errorMessage} notify={notify} />
+        <Login show={page === 'login'} setToken={setToken} setError={notify} />
       </div>
     )
   }
 
   return (
     <div>
+      <Notification errorMessage={errorMessage} />
       <div>
         <button onClick={() => setPage('authors')}>authors</button>
         <button onClick={() => setPage('books')}>books</button>
         <button onClick={() => setPage('add')}>add book</button>
-        <button onClick={() => setPage('logout')}>logout</button>
+        <button onClick={logout}>logout</button>
       </div>
 
       <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>

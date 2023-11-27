@@ -1,4 +1,4 @@
-const Notify = ({errorMessage}) => {
+const Notification = ({errorMessage}) => {
   if (!errorMessage ) {
     return null
   }
@@ -9,4 +9,4 @@ const Notify = ({errorMessage}) => {
   )
 }
 
-export default Notify
+export default Notification
