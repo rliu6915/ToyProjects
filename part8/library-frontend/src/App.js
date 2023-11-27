@@ -27,6 +27,13 @@ const App = () => {
     client.resetStore()
   }
 
+  const getGenres = (books) => {
+    const genres = books.map((book) => book.genres)
+    const genresArr = genres.flat()
+    const uniqueGenres = [...new Set(genresArr)]
+    return uniqueGenres
+  }
+
   const result = useQuery(ALL_AUTHORS, {
     pollInterval: 2000
   })
@@ -51,7 +58,7 @@ const App = () => {
         </div>
 
         <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>
-        <Books show={page === 'books'} books={result2.data.allBooks}/>
+        <Books show={page === 'books'} books={result2.data.allBooks} getGenres={getGenres}/>
         <Login show={page === 'login'} setToken={setToken} setError={notify} />
       </div>
     )
@@ -68,7 +75,7 @@ const App = () => {
       </div>
 
       <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>
-      <Books show={page === 'books'} books={result2.data.allBooks}/>
+      <Books show={page === 'books'} books={result2.data.allBooks} getGenres={getGenres}/>
       <NewBook show={page === 'add'} />
 
     </div>

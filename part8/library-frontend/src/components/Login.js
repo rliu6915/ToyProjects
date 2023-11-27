@@ -13,7 +13,7 @@ const Login = ({show, setToken, setError}) => {
       setError(error.graphQLErrors[0].message)
     }
   })
-  console.log('result', result)
+  // console.log('result', result)
 
   useEffect(() => {
     if (result.data) {
