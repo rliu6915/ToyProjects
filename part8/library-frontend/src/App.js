@@ -3,9 +3,10 @@ import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 import Login from './components/Login'
+import Recommend from './components/Recommend'
 
 import { useApolloClient, useQuery } from '@apollo/client'
-import { ALL_AUTHORS, ALL_BOOKS } from './queries'
+import { ALL_AUTHORS, ALL_BOOKS, ME } from './queries'
 import Notification from './components/Notification'
 
 const App = () => {
@@ -37,13 +38,17 @@ const App = () => {
   const result = useQuery(ALL_AUTHORS, {
     pollInterval: 2000
   })
-  // console.log("result", result.data)
+  console.log("result", result.data)
   const result2 = useQuery(ALL_BOOKS, {
     pollInterval: 2000
   })
-  // console.log("result2", result2.data)
+  console.log("result2", result2.data)
+  const result3 = useQuery(ME, {
+    pollInterval: 2000
+  })
+  console.log("result3", result3.data)
 
-  if (result.loading || result2.loading) {
+  if (result.loading || result2.loading || result3.loading) {
     return <div>loading...</div>
   }
 
@@ -71,11 +76,13 @@ const App = () => {
         <button onClick={() => setPage('authors')}>authors</button>
         <button onClick={() => setPage('books')}>books</button>
         <button onClick={() => setPage('add')}>add book</button>
+        <button onClick={() => setPage('recommend')}>recommend</button>
         <button onClick={logout}>logout</button>
       </div>
 
       <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>
       <Books show={page === 'books'} books={result2.data.allBooks} getGenres={getGenres}/>
+      <Recommend show={page === 'recommend'} books={result2.data.allBooks} user={result3.data.me}/>
       <NewBook show={page === 'add'} />
 
     </div>
