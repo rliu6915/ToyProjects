@@ -1,4 +1,6 @@
+import { useQuery } from "@apollo/client"
 import React, { useState } from "react"
+import { GET_BOOKS_BY_GENRE } from "../queries"
 
 const Books = (props) => {
   const [selectedGenre, setGenre] = useState("all books")
@@ -7,12 +9,19 @@ const Books = (props) => {
   // console.log("books", books)
 
   // filter books
-  const filter = (books) => {
-    if (selectedGenre === null || selectedGenre === "all books") {
-      return books
-    }
-    return books.filter((book) => book.genres.includes(selectedGenre))
-  }
+  // const filter = (books) => {
+  //   if (selectedGenre === null || selectedGenre === "all books") {
+  //     return books
+  //   }
+  //   return books.filter((book) => book.genres.includes(selectedGenre))
+  // }
+
+  const result = useQuery(GET_BOOKS_BY_GENRE, {
+    variables: { genre: selectedGenre },
+    skip: selectedGenre === "all books",
+  })
+  console.log("filterBooks", result.data)
+  const filterBooks = result.data ? result.data.allBooks : books
 
   // get all genres
   const genres = props.getGenres(books)
@@ -34,7 +43,7 @@ const Books = (props) => {
             <th>author</th>
             <th>published</th>
           </tr>
-          {filter(books).map((a) => (
+          {filterBooks.map((a) => (
             <tr key={a.title}>
               <td>{a.title}</td>
               <td>{a.author.name}</td>
