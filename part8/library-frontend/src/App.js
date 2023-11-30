@@ -69,6 +69,8 @@ const App = () => {
     )
   }
 
+  // console.log('page', page)
+
   return (
     <div>
       <Notification errorMessage={errorMessage} />
@@ -80,7 +82,7 @@ const App = () => {
         <button onClick={logout}>logout</button>
       </div>
 
-      <Authors show={page === 'authors'} auhtors={result.data.allAuthors}/>
+      <Authors show={page === 'authors' || page === 'login' } auhtors={result.data.allAuthors}/>
       <Books show={page === 'books'} books={result2.data.allBooks} getGenres={getGenres}/>
       <Recommend show={page === 'recommend'} books={result2.data.allBooks} user={result3.data.me}/>
       <NewBook show={page === 'add'} />
