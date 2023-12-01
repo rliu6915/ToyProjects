@@ -5,9 +5,11 @@ import NewBook from './components/NewBook'
 import Login from './components/Login'
 import Recommend from './components/Recommend'
 
-import { useApolloClient, useQuery } from '@apollo/client'
+import { useApolloClient, useQuery, useSubscription } from '@apollo/client'
 import { ALL_AUTHORS, ALL_BOOKS, ME } from './queries'
 import Notification from './components/Notification'
+
+import { BOOK_ADDED } from './queries'
 
 const App = () => {
   const [token, setToken] = useState(null)
@@ -47,6 +49,13 @@ const App = () => {
     pollInterval: 2000
   })
   console.log("result3", result3.data)
+
+  // useSubscription(BOOK_ADDED, {
+  //   onData: ({data}) => {
+  //     console.log("data", data)
+  //     window.alert(`New book added: ${data.bookAdded.title}`)
+  //   }
+  // })
 
   if (result.loading || result2.loading || result3.loading) {
     return <div>loading...</div>
