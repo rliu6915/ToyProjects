@@ -69,7 +69,7 @@ const resolvers = {
           await newAuthor.save()
           await book.save()
 
-          // pubsub.publish('BOOK_ADDED', { bookAdded: book })
+          pubsub.publish('BOOK_ADDED', { bookAdded: book })
           return book
         } catch (error) {
           throw new UserInputError(error.message, {
@@ -81,7 +81,7 @@ const resolvers = {
           const book = await new Book({ ...args, author: findAuthor._id}).populate('author')
           await book.save()
 
-          // pubsub.publish('BOOK_ADDED', { bookAdded: book })
+          pubsub.publish('BOOK_ADDED', { bookAdded: book })
           return book
         } catch (error) {
           throw new UserInputError(error.message, {

@@ -53,7 +53,7 @@ const App = () => {
   useSubscription(BOOK_ADDED, {
     onData: ({data}) => {
       console.log("data", data)
-      window.alert(`New book added: ${data.bookAdded.title}`)
+      window.alert(`New book added: ${data.data.bookAdded.title}`)
     }
   })
 

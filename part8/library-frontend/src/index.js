@@ -23,7 +23,7 @@ const httpLink = createHttpLink({
 })
 
 const wsLink = new GraphQLWsLink(
-  createClient({url: 'ws://localhost:4000/graphql'})
+  createClient({url: 'ws://localhost:4000/'})
 )
 
 const splitLink = split(
