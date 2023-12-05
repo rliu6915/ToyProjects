@@ -50,12 +50,12 @@ const App = () => {
   })
   console.log("result3", result3.data)
 
-  // useSubscription(BOOK_ADDED, {
-  //   onData: ({data}) => {
-  //     console.log("data", data)
-  //     window.alert(`New book added: ${data.bookAdded.title}`)
-  //   }
-  // })
+  useSubscription(BOOK_ADDED, {
+    onData: ({data}) => {
+      console.log("data", data)
+      window.alert(`New book added: ${data.bookAdded.title}`)
+    }
+  })
 
   if (result.loading || result2.loading || result3.loading) {
     return <div>loading...</div>
