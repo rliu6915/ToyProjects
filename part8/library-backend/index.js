@@ -34,6 +34,8 @@ mongoose.connect(MONGOOB_URI)
     console.log('error connecting to MongoDB: ', error.message)
   })
 
+mongoose.set('debug', true)
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,

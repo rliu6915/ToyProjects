@@ -29,16 +29,29 @@ const resolvers = {
     allAuthors: async () => {
       // const authors = await Author.find({})
       // console.log(authors)
-      return await Author.find({})
+      console.log('Author.find')
+      const authors = await Author.find({}).populate('books')
+      const newAuthors = authors.map(author => {
+        return {
+          name: author.name,
+          born: author.born,
+          bookCount: author.books.length
+        }
+      })
+      return newAuthors
     },
     me: (root, args, context) => {
       return context.currentUser
     }
   },
-  Author: {
-    // bookCount: root => books.filter(book => book.author === root.name).length
-    bookCount: async (root) => Book.find({author: root.name}).countDocuments()
-  },
+  // Author: {
+  //   // bookCount: root => books.filter(book => book.author === root.name).length
+  //   bookCount: async (root) => {
+  //     // console.log("root: ", root)
+  //     console.log("bookCount.find")
+  //     return Book.find({author: root._id}).countDocuments()
+  //   }
+  // },
   Mutation: {
     addBook: async (root, args, context) => {
       // console.log("args: ", args)
