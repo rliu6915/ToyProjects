@@ -20,6 +20,8 @@ This repository contains my own exercise solutions to the 2023 edition of the [F
 
 [Certificate of completion GraphQL part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-graphql/en/629642b745244e55eb1cea01080a1bcb)
 
+[Certificate of completion React Native part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-react-native-2020/en/7e928c8232d3d3684643acfc6a3cf8bf)
+
 ### Part 0 - [Fundamentals of Web apps](https://fullstackopen.com/en/part0)
 
 An overall introduction to the course. It introduces to some concepts like HTTP requests, how traditional web apps work, DOM, CSS and Single Page Applications.
