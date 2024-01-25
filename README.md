@@ -105,3 +105,7 @@ This part shows and esplains of why you should use _Continuous Integration / Con
 
 - [full-stack-open-pokedex](../../../full-stack-open-pokedex) - Exercise repository.
 - [full-stack-open-pokedex](https://pokedex-fso.fly.dev/) - Deployed app.
+
+### Part 12 - Container
+
+- [part12-containers-applications](https://github.com/rliu6915/part12-containers-applications) - The app source code.
