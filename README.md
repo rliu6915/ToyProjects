@@ -22,7 +22,7 @@ This repository contains my own exercise solutions to the 2023 edition of the [F
 
 [Certificate of completion React Native part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-react-native-2020/en/7e928c8232d3d3684643acfc6a3cf8bf)
 
-[Certificate of completion Postgrl part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-psql/en/c65f84c7d21cbbe493117e9f56f97a09)
+[Certificate of completion Relational Database part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-psql/en/c65f84c7d21cbbe493117e9f56f97a09)
 
 ### Part 0 - [Fundamentals of Web apps](https://fullstackopen.com/en/part0)
 
