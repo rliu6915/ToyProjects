@@ -1,3 +1,5 @@
+import { parseArguments } from './utils'
+
 interface Result {
   periodLength: number,
   trainingDays: number,
@@ -7,6 +9,11 @@ interface Result {
   target: number,
   average: number
 }
+
+// interface CalculateValues {
+//   target: number,
+//   trainingHours: Array<number>
+// }
 
 const calculateExercises = (trainingHours : Array<number>, target : number) : Result => {
   // const trainingDays = 3;
@@ -39,6 +46,19 @@ const calculateExercises = (trainingHours : Array<number>, target : number) : Re
 }
 
 console.log('before:', process.argv)
-const target : number = Number(process.argv[2])
-const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
-console.log(calculateExercises(trainingHours, target))
+// const target : number = Number(process.argv[2])
+// const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
+// console.log(calculateExercises(trainingHours, target))
+
+try {
+  // const target : number = Number(process.argv[2])
+  // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
+  const { trainingHours, target } = parseArguments(process.argv)
+  console.log(calculateExercises(trainingHours, target))
+} catch (e: unknown) {
+  let errorMessage = 'Error, something bad happened, message: '
+  if (e instanceof Error) {
+    errorMessage += e.message
+  }
+  console.log(errorMessage)
+}
