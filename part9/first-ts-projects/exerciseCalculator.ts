@@ -38,6 +38,7 @@ const calculateExercises = (trainingHours : Array<number>, target : number) : Re
   }
 }
 
-const arr : Array<number> = process.argv.slice(3).map(a => Number(a))
-
-console.log(calculateExercises(arr, Number(process.argv[2])))
+console.log('before:', process.argv)
+const target : number = Number(process.argv[process.argv.length - 1])
+const trainingHours : Array<number> = process.argv.slice(2, -1).map(a => Number(a))
+console.log(calculateExercises(trainingHours, target))
