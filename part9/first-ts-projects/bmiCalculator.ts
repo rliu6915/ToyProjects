@@ -9,7 +9,7 @@ export const calculateBmi = (hegiht : number, weight : number) : string => {
   } else {
     return 'Obese';
   }
-}
+};
 
 // console.log(calculateBmi(185, 84))
-console.log(calculateBmi(Number(process.argv[2]), Number(process.argv[3])))
+console.log(calculateBmi(Number(process.argv[2]), Number(process.argv[3])));

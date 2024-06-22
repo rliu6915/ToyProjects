@@ -1,4 +1,4 @@
-import { parseArguments } from './utils'
+import { parseArguments } from './utils';
 
 interface Result {
   periodLength: number,
@@ -42,10 +42,10 @@ const calculateExercises = (trainingHours : Array<number>, target : number) : Re
     ratingDescription,
     target,
     average
-  }
-}
+  };
+};
 
-console.log('before:', process.argv)
+console.log('before:', process.argv);
 // const target : number = Number(process.argv[2])
 // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
 // console.log(calculateExercises(trainingHours, target))
@@ -53,12 +53,12 @@ console.log('before:', process.argv)
 try {
   // const target : number = Number(process.argv[2])
   // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
-  const { trainingHours, target } = parseArguments(process.argv)
-  console.log(calculateExercises(trainingHours, target))
+  const { trainingHours, target } = parseArguments(process.argv);
+  console.log(calculateExercises(trainingHours, target));
 } catch (e: unknown) {
-  let errorMessage = 'Error, something bad happened, message: '
+  let errorMessage = 'Error, something bad happened, message: ';
   if (e instanceof Error) {
-    errorMessage += e.message
+    errorMessage += e.message;
   }
-  console.log(errorMessage)
+  console.log(errorMessage);
 }
