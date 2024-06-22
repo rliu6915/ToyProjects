@@ -1,4 +1,4 @@
-import { parseArguments } from './utils';
+// import { parseArguments } from './utils';
 
 interface Result {
   periodLength: number,
@@ -15,7 +15,7 @@ interface Result {
 //   trainingHours: Array<number>
 // }
 
-const calculateExercises = (trainingHours : Array<number>, target : number) : Result => {
+export const calculateExercises = (trainingHours : Array<number>, target : number) : Result => {
   // const trainingDays = 3;
   // const periodLength = trainingHours.length;
   const periodLength = trainingHours.length;
@@ -45,20 +45,20 @@ const calculateExercises = (trainingHours : Array<number>, target : number) : Re
   };
 };
 
-console.log('before:', process.argv);
-// const target : number = Number(process.argv[2])
-// const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
-// console.log(calculateExercises(trainingHours, target))
+// console.log('before:', process.argv);
+// // const target : number = Number(process.argv[2])
+// // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
+// // console.log(calculateExercises(trainingHours, target))
 
-try {
-  // const target : number = Number(process.argv[2])
-  // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
-  const { trainingHours, target } = parseArguments(process.argv);
-  console.log(calculateExercises(trainingHours, target));
-} catch (e: unknown) {
-  let errorMessage = 'Error, something bad happened, message: ';
-  if (e instanceof Error) {
-    errorMessage += e.message;
-  }
-  console.log(errorMessage);
-}
+// try {
+//   // const target : number = Number(process.argv[2])
+//   // const trainingHours : Array<number> = process.argv.slice(3).map(a => Number(a))
+//   const { trainingHours, target } = parseArguments(process.argv);
+//   console.log(calculateExercises(trainingHours, target));
+// } catch (e: unknown) {
+//   let errorMessage = 'Error, something bad happened, message: ';
+//   if (e instanceof Error) {
+//     errorMessage += e.message;
+//   }
+//   console.log(errorMessage);
+// }
