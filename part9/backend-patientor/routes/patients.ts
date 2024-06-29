@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import express from 'express';
 import patientService from '../services/patientService';
 
@@ -12,7 +13,9 @@ router.get('/', (_req, res) => {
 
 router.post('/', (req, res) => {
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { name, dateOfBirth, ssn, gender, occupation } = req.body;
+
   const addedPatient = patientService.addPatient({
     name, 
     dateOfBirth, 
