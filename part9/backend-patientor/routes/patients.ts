@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import express from 'express';
 import patientService from '../services/patientService';
+import toNewPatientEntry from '../utils';
 
 const router = express.Router();
 
@@ -11,20 +12,36 @@ router.get('/', (_req, res) => {
   // res.send('Fetech all patients');
 });
 
+// router.post('/', (req, res) => {
+
+//   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+//   const { name, dateOfBirth, ssn, gender, occupation } = req.body;
+
+//   const addedPatient = patientService.addPatient({
+//     name, 
+//     dateOfBirth, 
+//     ssn,
+//     gender,
+//     occupation
+//   });
+//   res.json(addedPatient);
+//   // res.send('Saving a patient');
+// });
+
 router.post('/', (req, res) => {
+  try {
+    // parse and validate the request body
+    const newPatientEntry = toNewPatientEntry(req.body);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { name, dateOfBirth, ssn, gender, occupation } = req.body;
-
-  const addedPatient = patientService.addPatient({
-    name, 
-    dateOfBirth, 
-    ssn,
-    gender,
-    occupation
-  });
-  res.json(addedPatient);
-  // res.send('Saving a patient');
+    const addedPatient = patientService.addPatient(newPatientEntry);
+    res.json(addedPatient);
+  } catch (error: unknown) {
+    let errorMessage = 'Something went wrong.';
+    if (error instanceof Error) {
+      errorMessage += ' Error: ' + error.message;
+    }
+    res.status(400).send(errorMessage);
+  }
 });
 
 export default router;
