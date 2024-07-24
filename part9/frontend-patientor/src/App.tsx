@@ -1,7 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
+import Content from './components/Content';
+
+import Header from './components/Header';
+import Total from './components/Total';
 
 // function App() {
 //   const [count, setCount] = useState(0)
@@ -35,7 +39,7 @@ import './App.css'
 // export default App
 
 const App = () => {
-  const courseName = "Half Stack application development";
+  // const courseName = "Half Stack application development";
   const courseParts = [
     {
       name: "Fundamentals",
@@ -55,8 +59,9 @@ const App = () => {
 
   return (
     <div>
-      <h1>{courseName}</h1>
-      <p>
+      {/* <h1>{courseName}</h1> */}
+      <Header />
+      {/* <p>
         {courseParts[0].name} {courseParts[0].exerciseCount}
       </p>
       <p>
@@ -64,10 +69,12 @@ const App = () => {
       </p>
       <p>
         {courseParts[2].name} {courseParts[2].exerciseCount}
-      </p>
-      <p>
+      </p> */}
+      <Content courseParts={courseParts} />
+      {/* <p>
         Number of exercises {totalExercises}
-      </p>
+      </p> */}
+      <Total totalExercises={totalExercises} />
     </div>
   );
 };
