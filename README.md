@@ -93,7 +93,10 @@ This part is about _GraphQL_, Facebook's alternative to _REST API_ for communica
 
 ### Part 9 - [TypeScript](https://fullstackopen.com/en/part9)
 
-// I will study this part a little bit later.
+This part is all about TypeScript: an open-source typed superset of JavaScript developed by Microsoft that compiles to plain JavaScript.
+
+- [library-backend](/part9/) - The app source code.
+- [library-frontend](/part9/) - The app source code.
 
 ### Part 10 - [React Native](https://fullstackopen.com/en/part10)
 
