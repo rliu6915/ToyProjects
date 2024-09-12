@@ -9,7 +9,7 @@ The course introduce to modern JavaScript-based web development. The main focus 
 
 ### About this repository
 
-This repository contains my own exercise solutions to the 2023 edition of the [Full Stack Open](https://fullstackopen.com/en) course from the [University of Helsinki]().
+This repository contains my own exercise solutions to the 2024 edition of the [Full Stack Open](https://fullstackopen.com/en) course from the [University of Helsinki]().
 
 ### Certificates
 
