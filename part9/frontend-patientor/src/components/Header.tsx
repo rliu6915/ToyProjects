@@ -1,8 +1,7 @@
-const Header = () => {
-  const courseName = "Half Stack application development";
+const Header = ({ name } : { name : string }) : JSX.Element => {
   return (
     <div>
-      <h1>{courseName}</h1>
+      <h1>{name}</h1>
     </div>
   )
 };

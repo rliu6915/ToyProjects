@@ -115,10 +115,12 @@ const App = () => {
 
   const totalExercises = courseParts.reduce((sum, part) => sum + part.exerciseCount, 0);
 
+  const courseName = "Half Stack application development";
+
   return (
     <div>
       {/* <h1>{courseName}</h1> */}
-      <Header />
+      <Header name={courseName}/>
       {/* <p>
         {courseParts[0].name} {courseParts[0].exerciseCount}
       </p>
