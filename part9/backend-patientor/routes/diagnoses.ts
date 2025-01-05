@@ -7,7 +7,6 @@ router.get('/', (_req, res) => {
   const diagnoses = diagnoseService.getEntries();
   console.log(diagnoses);
   res.send(diagnoses);
-  // res.send('Fetching all diagnoses!');
 });
 
 router.post('/', (_req, res) => {

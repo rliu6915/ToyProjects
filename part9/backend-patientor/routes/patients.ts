@@ -1,4 +1,3 @@
-
 import express from 'express';
 import patientService from '../services/patientService';
 import toNewPatientEntry from '../utils';
@@ -11,22 +10,6 @@ router.get('/', (_req, res) => {
   res.send(patients);
   // res.send('Fetech all patients');
 });
-
-// router.post('/', (req, res) => {
-
-//   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-//   const { name, dateOfBirth, ssn, gender, occupation } = req.body;
-
-//   const addedPatient = patientService.addPatient({
-//     name, 
-//     dateOfBirth, 
-//     ssn,
-//     gender,
-//     occupation
-//   });
-//   res.json(addedPatient);
-//   // res.send('Saving a patient');
-// });
 
 router.post('/', (req, res) => {
   try {

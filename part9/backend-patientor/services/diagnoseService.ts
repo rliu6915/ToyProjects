@@ -5,6 +5,7 @@ import { DiagnosisEntry } from "../types";
 const diagnosis : DiagnosisEntry[] = diagnoseData;
 
 const getEntries = () : DiagnosisEntry[] => {
+  
   return diagnosis;
 };
 

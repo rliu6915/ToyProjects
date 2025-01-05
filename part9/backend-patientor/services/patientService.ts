@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import patientData from "../data/patients";
 import { NewPatientEntry, PatientEntry, NonSsnPatientEntry } from "../types";
 import { v1 as uuid } from 'uuid';
@@ -20,7 +18,6 @@ const getNonSsnEntries = () : NonSsnPatientEntry[] => {
 };
 
 const addPatient = (entry: NewPatientEntry): PatientEntry => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const id = uuid();
   const newPatientEntry = {
     id: id,

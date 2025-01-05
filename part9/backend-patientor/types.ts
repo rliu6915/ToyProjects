@@ -1,5 +1,5 @@
 export interface DiagnosisEntry {
-  code: string;
+  code: string; 
   name: string;
   latin?: string;
 }
