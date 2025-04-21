@@ -10,7 +10,7 @@ export const calculateBmi = (height: number, weight: number): string => {
     } else {
         return "Obese";
     }
-}
+};
 
 // console.log(process.argv)
 // console.log(calculateBmi(Number(process.argv[2]), Number(process.argv[3])))
@@ -20,24 +20,24 @@ interface MultipleValues {
 }
 
 const parseArguments = (args: string[]): MultipleValues => {
-    if (args.length < 4) throw new Error("not enough arguments for the program")
-    if (args.length > 4) throw new Error("too many arguments for the program")
+    if (args.length < 4) throw new Error("not enough arguments for the program");
+    if (args.length > 4) throw new Error("too many arguments for the program");
 
     if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {    
         return {
             value1: Number(args[2]),
             value2: Number(args[3])
-        }
+        };
     } else {
-        throw new Error("Provided values were not numbers!")
+        throw new Error("Provided values were not numbers!");
     }
-}
+};
 
 // console.log(require.main)
 if (require.main === module) {
     try {
-        const {value1, value2} = parseArguments(process.argv)
-        console.log(calculateBmi(value1, value2))
+        const {value1, value2} = parseArguments(process.argv);
+        console.log(calculateBmi(value1, value2));
     } catch (error: unknown) {
         let errorMessage = "something bad happen";
         if (error instanceof Error) {

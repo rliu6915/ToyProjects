@@ -17,15 +17,15 @@ export const calculateExercises = (dailyExercise: number[], target: number):Resu
     const periodLength = dailyExercise.length;
 
     if (periodLength === 0) {
-        throw new Error("No excerise data provied.")
+        throw new Error("No excerise data provied.");
     }
 
     if (dailyExercise.some((hours) => hours < 0)) {
-        throw new Error("Some daily excerise values are negative.")
+        throw new Error("Some daily excerise values are negative.");
     }
     
     const trainingDays = dailyExercise.filter((day) => day > 0).length;
-    console.log(dailyExercise)
+    console.log(dailyExercise);
     
     const totalHours = dailyExercise.reduce(
         (sum, hours) => sum + hours,
@@ -57,7 +57,7 @@ export const calculateExercises = (dailyExercise: number[], target: number):Resu
         target,
         average,
     };
-}
+};
 
 // const arrayCheck = (arr: string[]): [number[], boolean] => {
 //     // const results: number[] = [];
@@ -75,31 +75,31 @@ export const calculateExercises = (dailyExercise: number[], target: number):Resu
 // }
 
 const parseArguments = (args: string[]): MultipleValues => {
-    if (args.length < 3) throw new Error("Not enough arguments.")
+    if (args.length < 3) throw new Error("Not enough arguments.");
     // if (args.length > 10) throw new Error("Too many arguments.")
     
-    const dailyExercise = args.slice(3).map(Number)
-    const target = Number(args[2])
+    const dailyExercise = args.slice(3).map(Number);
+    const target = Number(args[2]);
     // const [results, isValid] = arrayCheck(slicedArr)
-    const isValid = dailyExercise.every((e) => !isNaN(e))
+    const isValid = dailyExercise.every((e) => !isNaN(e));
 
     if (!isNaN(target) && isValid) {
         return {
             target,
             dailyExercise
-        }
+        };
     } else {
-        throw new Error("Provided valuess were not numbers!")
+        throw new Error("Provided valuess were not numbers!");
     }
-}
+};
 
 try {
-    const { target, dailyExercise } = parseArguments(process.argv)
-    console.log(calculateExercises(dailyExercise, target))    
+    const { target, dailyExercise } = parseArguments(process.argv);
+    console.log(calculateExercises(dailyExercise, target));    
 } catch (error: unknown) {
     let errorMessage = "something bad happened";
     if (error instanceof Error) {
-        errorMessage += " Error: " + error.message
+        errorMessage += " Error: " + error.message;
     }
-    console.log(errorMessage)
+    console.log(errorMessage);
 }
