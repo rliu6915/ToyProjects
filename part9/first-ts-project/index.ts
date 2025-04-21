@@ -16,6 +16,7 @@ app.get('/bmi', (req, res) => {
         res.status(400).json({
             error: "malformatted parameters"
         })
+        return;
     }
 
     const bmi = calculateBmi(Number(height), Number(weight))
@@ -26,6 +27,18 @@ app.get('/bmi', (req, res) => {
         bmi
     })
 })
+
+// app.post('/exercises', (req, res) => {
+//     const {dailyExercise, target} = req.body
+    
+//     if (!dailyExercise || !target) {
+//         return res.status(400).json({
+//             error: "parameters missing"
+//         })
+//     }
+
+    
+// })
 
 const PORT = 3003;
 
