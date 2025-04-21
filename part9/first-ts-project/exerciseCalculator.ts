@@ -45,7 +45,7 @@ const calculateExercises = (dailyExercise: number[], target: number):ResultObjec
         ratingDescription = "not too bad but could be better";
     } else {
         rating = 1;
-        ratingDescription = "need improvement";
+        ratingDescription = "bad";
     }
 
     return {
@@ -106,7 +106,7 @@ const main = () => {
     }
 };
 
-module.exports = {
+export {
     main,
     calculateExercises
 };
