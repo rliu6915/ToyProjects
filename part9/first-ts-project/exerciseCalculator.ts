@@ -13,7 +13,7 @@ interface MultipleValues {
     dailyExercise: number[];
 }
 
-export const calculateExercises = (dailyExercise: number[], target: number):ResultObject => {
+const calculateExercises = (dailyExercise: number[], target: number):ResultObject => {
     const periodLength = dailyExercise.length;
 
     if (periodLength === 0) {
@@ -68,11 +68,11 @@ export const calculateExercises = (dailyExercise: number[], target: number):Resu
 //     //     }
 //     //     results[i] = num;
 //     // }
-//     const results: number[] = arr.map(Number)
-//     const isValid: boolean = results.every((e) => !isNaN(e))
+//     const results: number[] = arr.map(Number);
+//     const isValid: boolean = results.every((e) => !isNaN(e));
 //     return [results, isValid];
 
-// }
+// };
 
 const parseArguments = (args: string[]): MultipleValues => {
     if (args.length < 3) throw new Error("Not enough arguments.");
@@ -93,13 +93,25 @@ const parseArguments = (args: string[]): MultipleValues => {
     }
 };
 
-try {
-    const { target, dailyExercise } = parseArguments(process.argv);
-    console.log(calculateExercises(dailyExercise, target));    
-} catch (error: unknown) {
-    let errorMessage = "something bad happened";
-    if (error instanceof Error) {
-        errorMessage += " Error: " + error.message;
+const main = () => {
+    try {
+        const { target, dailyExercise } = parseArguments(process.argv);
+        console.log(calculateExercises(dailyExercise, target));    
+    } catch (error: unknown) {
+        let errorMessage = "something bad happened";
+        if (error instanceof Error) {
+            errorMessage += " Error: " + error.message;
+        }
+        console.log(errorMessage);
     }
-    console.log(errorMessage);
+};
+
+module.exports = {
+    main,
+    calculateExercises
+};
+
+// only execute main if the script is run directly
+if (require.main === module) {
+    main();
 }
