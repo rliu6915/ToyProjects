@@ -13,8 +13,9 @@ This repository contains my own exercise solutions to the 2024 edition of the [F
 
 ### Certificates
 
-[Certificate of completion Fullstack Open Course from the University of Helsinki](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/134505da2c4663fc00e46b1ef93e656a)
+#### Full Stack Open
 
+[Certificate of completion Fullstack Open Course from the University of Helsinki](https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/134505da2c4663fc00e46b1ef93e656a)
 
 [Certificate of completion CI/CD part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-cicd/en/cd994d115e07f9d7abd1b275e7658d2e)
 
@@ -23,6 +24,10 @@ This repository contains my own exercise solutions to the 2024 edition of the [F
 [Certificate of completion React Native part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-react-native-2020/en/7e928c8232d3d3684643acfc6a3cf8bf)
 
 [Certificate of completion Relational Database part of the course](https://studies.cs.helsinki.fi/stats/api/certificate/fs-psql/en/c65f84c7d21cbbe493117e9f56f97a09)
+
+#### Java
+
+[The Confident Spring Professional](https://www.marcobehler.com/courses/spring-professional#spring-data-jdbc)
 
 ### Part 0 - [Fundamentals of Web apps](https://fullstackopen.com/en/part0)
 
