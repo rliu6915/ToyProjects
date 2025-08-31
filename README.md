@@ -27,7 +27,7 @@ This repository contains my own exercise solutions to the 2024 edition of the [F
 
 #### Java
 
-[The Confident Spring Professional](https://www.marcobehler.com/courses/spring-professional#spring-data-jdbc)
+[The Confident ](https://www.marcobehler.com/courses/spring-professional#spring-data-jdbc)[Spring Professional](https://github.com/user-attachments/assets/ca7d5d5a-30eb-48f7-b317-72203d180a8e)
 
 ### Part 0 - [Fundamentals of Web apps](https://fullstackopen.com/en/part0)
 
